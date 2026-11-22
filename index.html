@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="app-version" content="1.1">
+<meta name="app-version" content="1.2">
 <meta name="theme-color" content="#1d2b4f">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
@@ -44,16 +44,18 @@
   --ink:#1d2b4f; --ink2:#4a5677; --paper:#fbf7f0; --card:#ffffff; --line:#e6dfd2; --soft:#f4efe4; --th:#f3efe6; --key:#eef1f8;
   --head:#1d2b4f; --btn:#1d2b4f; --btn-ink:#fff;
   --sen:#e8664a; --cos:#2a9d8f; --tg:#d99a1e; --ok:#2a9d8f; --bad:#d64545;
-  --sen-l:#fde8e2; --cos-l:#dff3f0; --tg-l:#fbf0d6; --bad-l:#fbe1e1; --muted:#888; --axis:#c4c4c4;
+  --sen-l:#fde8e2; --cos-l:#dff3f0; --tg-l:#fbf0d6; --bad-l:#fbe1e1; --muted:#6b6b6b; --axis:#c4c4c4;
+  --sen-t:#b5402a; --cos-t:#1a7066; --tg-t:#875c00; --ok-t:#1a7066; --bad-t:#b83232; --focus:#2563eb;
   --r:16px; color-scheme:light;
 }
 :root[data-theme="dark"]{
   --ink:#e8ecf5; --ink2:#a9b3c9; --paper:#121826; --card:#1b2334; --line:#2f3a51; --soft:#232d42; --th:#253049; --key:#202b44;
   --head:#0c1220; --btn:#e8ecf5; --btn-ink:#121826;
   --sen:#f07a5f; --cos:#3cb5a6; --tg:#e8ae34; --ok:#3cb5a6; --bad:#ef6b6b;
-  --sen-l:#43261f; --cos-l:#163a36; --tg-l:#3f3318; --bad-l:#4a2222; --muted:#8a94aa; --axis:#4a5672; color-scheme:dark;
+  --sen-l:#43261f; --cos-l:#163a36; --tg-l:#3f3318; --bad-l:#4a2222; --muted:#9aa4ba; --axis:#4a5672; color-scheme:dark;
+  --sen-t:#ff9e87; --cos-t:#5fd3c4; --tg-t:#f2c25a; --ok-t:#5fd3c4; --bad-t:#ff8a8a; --focus:#7aa7ff;
 }
-html[data-fs="s"]{font-size:15px} html,html[data-fs="m"]{font-size:17px} html[data-fs="l"]{font-size:19px} html[data-fs="xl"]{font-size:21px}
+html[data-fs="s"]{font-size:15px} html,html[data-fs="m"]{font-size:17px} html[data-fs="l"]{font-size:19px} html[data-fs="xl"]{font-size:21px} html[data-fs="xxl"]{font-size:24px}
 *{box-sizing:border-box}
 html,body{margin:0}
 html{background:var(--paper);overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
@@ -62,7 +64,11 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
 h2{font-size:1.7rem} h3{font-size:1.2rem}
 p{margin:.4em 0 .9em}
 button{font:inherit;cursor:pointer;touch-action:manipulation}
-.sen{color:var(--sen)} .cos{color:var(--cos)} .tg{color:var(--tg)}
+.sen{color:var(--sen-t)} .cos{color:var(--cos-t)} .tg{color:var(--tg-t)}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+header :focus-visible{outline-color:#fff}
+svg:focus-visible{outline-offset:-3px}
 b.sen,b.cos,b.tg{font-weight:800}
 .muted{color:var(--ink2)}
 [hidden]{display:none!important}
@@ -75,17 +81,19 @@ main svg [fill="#888"],main svg [fill="#bbb"]{fill:var(--muted)}
 main svg [fill="#e8664a"]{fill:var(--sen)} main svg [stroke="#e8664a"]{stroke:var(--sen)}
 main svg [fill="#2a9d8f"]{fill:var(--cos)} main svg [stroke="#2a9d8f"]{stroke:var(--cos)}
 main svg [fill="#d99a1e"]{fill:var(--tg)} main svg [stroke="#d99a1e"]{stroke:var(--tg)}
+main svg text[fill="#e8664a"]{fill:var(--sen-t)} main svg text[fill="#2a9d8f"]{fill:var(--cos-t)} main svg text[fill="#b08830"]{fill:var(--tg-t)} main svg tspan[fill="#e8664a"]{fill:var(--sen-t)} main svg tspan[fill="#2a9d8f"]{fill:var(--cos-t)}
 main svg [fill="#e9e2d3"]{fill:var(--soft)}
 
 /* cabecera */
 header{position:sticky;top:0;z-index:10;background:var(--head);color:#fff;display:flex;align-items:center;gap:14px;
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(18px,env(safe-area-inset-right,0px)) 10px max(18px,env(safe-area-inset-left,0px));flex-wrap:wrap}
-.brand{font-family:Fraunces,serif;font-weight:800;font-size:1.35rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
-.brand svg{width:30px;height:30px}
-.brand small{font-family:Nunito;font-weight:700;font-size:.72rem;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:99px}
+.brand{font-family:Fraunces,serif;font-weight:800;font-size:23px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
+.brand img{width:32px;height:32px;border-radius:8px;display:block}
+.hd-ver{font-family:Nunito;font-weight:700;font-size:12px;opacity:.75}
+.brand small{font-family:Nunito;font-weight:700;font-size:12px;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:99px}
 nav.main{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;order:1}
 .brand{order:0}
-nav.main a{color:#fff;text-decoration:none;font-weight:700;padding:8px 14px;border-radius:99px;opacity:.8;display:flex;align-items:center;gap:6px}
+nav.main a{color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:8px 14px;border-radius:99px;opacity:.8;display:flex;align-items:center;gap:6px}
 nav.main a:hover{opacity:1;background:rgba(255,255,255,.1)}
 nav.main a.on{opacity:1;background:#fff;color:#1d2b4f}
 nav.main a .i{font-size:1.05em}
@@ -99,7 +107,7 @@ main{max-width:1060px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-ri
 
 /* inicio */
 .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;margin:10px 0 30px}
-.hero h1{font-size:2.6rem}
+.hero h1{font-size:min(2.6rem,9.5vw)}
 .hero p{font-size:1.1rem;color:var(--ink2)}
 .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .pill{display:inline-block;padding:3px 12px;border-radius:99px;font-weight:800;font-size:.9rem}
@@ -108,7 +116,7 @@ main{max-width:1060px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-ri
 .mode{display:block;text-decoration:none;color:inherit;transition:transform .15s}
 .mode:hover{transform:translateY(-3px)}
 .mode .ico{font-size:2rem}
-.mode h3{margin:.3em 0}
+.mode .h3{margin:.3em 0;font-size:1.2rem}
 .mode p{color:var(--ink2);margin:0}
 .install-banner{display:flex;align-items:center;gap:10px;background:#ffe066;color:#2b2100;border:1.5px solid #e6bf2e;border-radius:14px;padding:10px 6px 10px 12px;margin-bottom:18px;box-shadow:0 6px 18px -10px rgb(0 0 0 / .4)}
 :root[data-theme="dark"] .install-banner{background:#5a4706;color:#fff3c4;border-color:#8a6e12}
@@ -126,7 +134,7 @@ main{max-width:1060px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-ri
 .subnav button:hover{background:var(--card)}
 .subnav button.on{background:var(--btn);color:var(--btn-ink)}
 .subnav button span{opacity:.55;margin-right:6px}
-.subnav button.seen::after{content:" ✓";color:var(--ok);font-weight:800}
+.subnav button.seen::after{content:" ✓";color:var(--ok-t);font-weight:800}
 .subnav button.on.seen::after{color:inherit}
 .lesson{display:none} .lesson.on{display:block}
 .box{border-radius:12px;padding:12px 16px;margin:12px 0}
@@ -140,7 +148,7 @@ main{max-width:1060px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-ri
 .btn{background:var(--btn);color:var(--btn-ink);border:0;border-radius:99px;padding:11px 20px;font-weight:800;min-height:44px}
 .btn:hover{filter:brightness(1.12)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-.btn.coral{background:var(--sen);color:#fff} .btn.teal{background:var(--cos);color:#fff}
+.btn.coral{background:#b5402a;color:#fff} .btn.teal{background:#1a7066;color:#fff}
 .btn.block{width:100%}
 .btn:disabled{opacity:.35;cursor:default}
 .inter{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;margin:14px 0}
@@ -168,6 +176,7 @@ svg text{font-family:Nunito,sans-serif}
 .uc-out .row{display:flex;justify-content:space-between;padding:6px 10px;border-radius:8px;margin:4px 0;font-weight:700;color:var(--ink)}
 .uc-out .row.sen{background:var(--sen-l)} .uc-out .row.cos{background:var(--cos-l)} .uc-out .row.tg{background:var(--tg-l)}
 .uc-out .big{font-family:Fraunces,serif;font-size:2rem}
+#diana-svg{max-height:calc(100dvh - 400px);min-height:240px}
 #uc-svg,#diana-svg{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;width:100%;max-width:380px;display:block;margin:auto}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .grid3 .card{padding:16px}
@@ -191,11 +200,11 @@ button.stat{font:inherit;color:var(--ink)}
 .opt:hover:not(:disabled){border-color:var(--ink)}
 .opt.ok{background:var(--cos-l);border-color:var(--ok)}
 .opt.bad{background:var(--bad-l);border-color:var(--bad)}
-.opt.ok::before{content:"✓ ";color:var(--ok)} .opt.bad::before{content:"✗ ";color:var(--bad)}
+.opt.ok::before{content:"✓ ";color:var(--ok-t)} .opt.bad::before{content:"✗ ";color:var(--bad-t)}
 .opt:disabled{cursor:default;color:var(--ink)}
 .fb{font-weight:800;min-height:1.6em;font-size:1.08rem}
-.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
-.ex-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.fb.ok{color:var(--ok-t)} .fb.bad{color:var(--bad-t)}
+.ex-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;position:sticky;bottom:0;z-index:5;background:var(--card);padding:10px 0 calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 10px -8px var(--card)}
 .panel{margin-top:14px;padding:12px 16px;border-radius:12px;display:none}
 .panel.on{display:block}
 .panel.hint{background:var(--tg-l)}
@@ -207,7 +216,7 @@ button.stat{font:inherit;color:var(--ink)}
 
 /* juegos */
 .games{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.game-card h3{margin-top:6px}
+.game-card .h3{margin-top:6px;font-size:1.2rem}
 .rec{font-weight:800;color:var(--ink2);font-size:.95rem}
 .hud{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .hud .stat b{font-size:1.5rem}
@@ -219,7 +228,7 @@ button.stat{font:inherit;color:var(--ink)}
 .end{text-align:center}
 .end .big{font-family:Fraunces,serif;font-size:3.4rem;margin:.1em 0}
 .target{text-align:center;font-size:1.25rem}
-.target b{font-family:Fraunces,serif;font-size:2.2rem;color:var(--sen)}
+.target b{font-family:Fraunces,serif;font-size:2.2rem;color:var(--sen-t)}
 
 /* pie, aviso y autoría */
 footer{text-align:center;color:var(--ink2);font-size:.82rem;padding:10px max(18px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px));max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
@@ -261,27 +270,33 @@ footer p{margin:0} footer b{color:var(--ink)}
   .learn{grid-template-columns:1fr}
   .subnav{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px;margin-inline:-4px;scrollbar-width:none}
   .subnav button{white-space:nowrap}
-  .hero h1{font-size:2rem}
   header{gap:4px 8px;padding-bottom:6px}
   .gear{margin-left:auto}
   nav.main{order:3;width:100%;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-  nav.main a{flex-direction:column;gap:0;padding:6px 2px;border-radius:12px;font-size:.78rem;justify-content:center}
-  nav.main a .i{font-size:1.3rem;line-height:1.2}
+  nav.main a{flex-direction:column;gap:0;padding:6px 2px;border-radius:12px;font-size:13px;justify-content:center;min-height:52px}
+  nav.main a .i{font-size:22px;line-height:1.2}
   main{padding-top:16px}
   .card{padding:16px}
   h2{font-size:1.45rem}
   .q-big{font-size:1.7rem}
-  .stats .stat{min-width:64px;padding:6px 10px}
+  .vt{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .ex-actions{flex-wrap:nowrap;gap:6px}.ex-actions .btn{padding:8px 10px;font-size:.88rem;white-space:nowrap}
+  #topic-chips{flex-wrap:nowrap;overflow-x:auto;width:100%;margin-inline:-4px;padding:2px 4px 6px;scrollbar-width:none}
+  #topic-chips .chip{white-space:nowrap;flex:none}
+  .stats{width:100%}.stats .stat{flex:1;min-width:0;padding:5px 4px}.stats .stat b{font-size:1.1rem}.stats .stat small{font-size:.75rem;white-space:nowrap}
 }
 @media (max-width:420px){ .install-banner div span{display:none} .install-banner .btn{padding:8px 12px} .opt{font-size:1.05rem;padding:10px 6px} .formula{font-size:1rem} }
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+#confeti i{position:absolute;top:-30px;font-style:normal;font-size:1.6rem;animation:caer 1.8s ease-in forwards}
+@keyframes caer{to{transform:translateY(110vh) rotate(540deg)}}
 @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
 </style>
 </head>
 <body>
 <header>
   <a class="brand" href="#inicio">
-    <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M20 20 L31.3 8.7" stroke="#e8664a" stroke-width="3" stroke-linecap="round"/><path d="M31.3 8.7 V20" stroke="#e8664a" stroke-width="2" stroke-dasharray="2 2"/><path d="M20 20 H31.3" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/></svg>
-    TrigoLab <small>4º ESO</small>
+    <img src="icon-192.png" alt="" width="32" height="32">
+    TrigoLab <small>4º ESO</small> <span class="hd-ver" id="hd-ver"></span>
   </a>
   <button class="gear" id="gear" aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   <nav class="main">
@@ -308,14 +323,15 @@ footer p{margin:0} footer b{color:var(--ink)}
     <div class="card" id="hero-fig"></div>
   </div>
   <div class="modes">
-    <a class="card mode" href="#aprender"><div class="ico">📘</div><h3>Aprender</h3><p>7 lecciones cortas con figuras interactivas: mueve el ángulo y mira qué pasa.</p></a>
-    <a class="card mode" href="#practicar"><div class="ico">✏️</div><h3>Practicar</h3><p>Ejercicios nuevos cada vez, con pista y solución paso a paso.</p></a>
-    <a class="card mode" href="#jugar"><div class="ico">🎮</div><h3>Jugar</h3><p>Contrarreloj de 60 segundos y la Diana goniométrica. ¿Superas tu récord?</p></a>
+    <a class="card mode" href="#aprender"><div class="ico" aria-hidden="true">📘</div><h2 class="h3">Aprender</h2><p>7 lecciones cortas con figuras interactivas: mueve el ángulo y mira qué pasa.</p></a>
+    <a class="card mode" href="#practicar"><div class="ico" aria-hidden="true">✏️</div><h2 class="h3">Practicar</h2><p>Ejercicios nuevos cada vez, con pista y solución paso a paso.</p></a>
+    <a class="card mode" href="#jugar"><div class="ico" aria-hidden="true">🎮</div><h2 class="h3">Jugar</h2><p>Contrarreloj de 60 segundos y la Diana goniométrica. ¿Superas tu récord?</p></a>
   </div>
 </section>
 
 <!-- ================= APRENDER ================= -->
 <section class="view" id="v-aprender">
+  <h1 class="sr-only">Aprender</h1>
   <div class="learn">
     <div class="subnav" id="subnav"></div>
     <div class="card">
@@ -331,9 +347,9 @@ footer p{margin:0} footer b{color:var(--ink)}
         <div class="inter">
           <div id="tri-fig"></div>
           <div>
-            <div class="ctrl"><label>Ángulo α <span id="tri-a-v"></span></label><input type="range" id="tri-a" min="10" max="80" value="35"></div>
-            <div class="ctrl"><label>Hipotenusa <span id="tri-h-v"></span></label><input type="range" id="tri-h" min="1" max="20" value="10"></div>
-            <div id="tri-out"></div>
+            <div class="ctrl"><label for="tri-a">Ángulo α <span id="tri-a-v"></span></label><input type="range" id="tri-a" min="10" max="80" value="35"></div>
+            <div class="ctrl"><label for="tri-h">Hipotenusa <span id="tri-h-v"></span></label><input type="range" id="tri-h" min="1" max="20" value="10"></div>
+            <div id="tri-out" aria-live="polite"></div>
           </div>
         </div>
         <div class="box key"><b>Pruébalo:</b> cambia solo la hipotenusa. Los lados crecen o encogen, pero el seno, el coseno y la tangente <b>no cambian</b>. Las razones solo dependen del ángulo, no del tamaño del triángulo.</div>
@@ -382,8 +398,8 @@ footer p{margin:0} footer b{color:var(--ink)}
         <p>Para hablar de ángulos mayores de 90° usamos una circunferencia de <b>radio 1</b> centrada en el origen. Los ángulos se miden desde el eje X positivo, en sentido <b>contrario a las agujas del reloj</b>. Si el radio forma un ángulo α:</p>
         <div class="formula"><span>el punto es (<b class="cos">cos α</b>, <b class="sen">sen α</b>)</span><span><b class="tg">tg α</b> es la altura en la recta x = 1</span></div>
         <div class="inter">
-          <div><svg id="uc-svg" viewBox="0 0 340 340"></svg><p style="text-align:center;font-size:.9rem;color:var(--ink2);margin:4px">Arrastra el punto por la circunferencia</p></div>
-          <div class="uc-out" id="uc-out"></div>
+          <div><svg id="uc-svg" viewBox="0 0 340 340" tabindex="0" role="slider" aria-label="Ángulo en la circunferencia" aria-valuemin="0" aria-valuemax="359" aria-valuenow="30"></svg><p style="text-align:center;font-size:.9rem;color:var(--ink2);margin:4px">Arrastra el punto por la circunferencia (o usa las flechas del teclado)</p></div>
+          <div class="uc-out" id="uc-out" aria-live="polite"></div>
         </div>
         <div class="chips" id="uc-chips"></div>
         <h3>Signos en cada cuadrante</h3>
@@ -471,13 +487,13 @@ footer p{margin:0} footer b{color:var(--ink)}
 
 <!-- ================= PRACTICAR ================= -->
 <section class="view" id="v-practicar">
-  <h2>Practicar</h2>
+  <h1 class="vt" style="font-size:1.7rem">Practicar</h1>
   <div class="toolbar">
     <div class="chips" id="topic-chips"></div>
     <div class="stats">
       <div class="stat"><b id="st-ok">0</b><small>aciertos</small></div>
       <div class="stat"><b id="st-tot">0</b><small>ejercicios</small></div>
-      <div class="stat"><b id="st-streak">0</b><small>racha 🔥</small></div>
+      <div class="stat"><b id="st-streak">0</b><small>🔥 racha</small></div>
       <button class="stat" id="b-prog" aria-label="Ver mi progreso"><b>📊</b><small>progreso</small></button>
     </div>
   </div>
@@ -488,18 +504,18 @@ footer p{margin:0} footer b{color:var(--ink)}
 <!-- ================= JUGAR ================= -->
 <section class="view" id="v-jugar">
   <div id="game-menu">
-    <h2>Jugar</h2>
+    <h1 class="vt" style="font-size:1.7rem">Jugar</h1>
     <div class="games">
       <div class="card game-card">
         <div style="font-size:2.2rem">⏱️</div>
-        <h3>Contrarreloj</h3>
+        <h2 class="h3">Contrarreloj</h2>
         <p>60 segundos para responder todo lo que puedas: ángulos notables, signos, reducción y radianes. Si encadenas aciertos, ganas más puntos (×2, ×3…).</p>
         <p class="rec" id="rec-crono"></p>
         <button class="btn coral" id="start-crono">¡Empezar!</button>
       </div>
       <div class="card game-card">
         <div style="font-size:2.2rem">🎯</div>
-        <h3>Diana goniométrica</h3>
+        <h2 class="h3">Diana goniométrica</h2>
         <p>Te damos un ángulo, en grados o radianes, y tienes que tocar dónde está en la circunferencia. 10 rondas. Cuanto más cerca, más puntos.</p>
         <p class="rec" id="rec-diana"></p>
         <button class="btn teal" id="start-diana">¡Empezar!</button>
@@ -509,7 +525,9 @@ footer p{margin:0} footer b{color:var(--ink)}
   <div id="game-area" class="card" style="display:none"></div>
 </section>
 </main>
-<div class="flash" id="flash"></div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div id="sr-live" class="sr-only" role="status" aria-live="assertive"></div>
+<div id="confeti" aria-hidden="true"></div>
 <footer id="foot"></footer>
 <div id="sheet" hidden></div>
 <div id="barra-act" hidden>🔄 Actualizando a la versión nueva…</div>
@@ -549,6 +567,8 @@ function parseNum(s){
   if(s.includes('/')){const [p,q]=s.split('/');const v=parseFloat(p)/parseFloat(q);return isFinite(v)?v:NaN}
   const v=Number(s);return isFinite(v)?v:NaN;
 }
+function anunciar(t){const el=$('#sr-live');el.textContent='';setTimeout(()=>el.textContent=t,50)}
+function celebrar(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=$('#confeti');c.innerHTML=Array.from({length:28},()=>`<i style="left:${Math.random()*100}%;animation-delay:${Math.random()*.6}s">${pick(['🎉','⭐','📐','🔺','✨','🏆'])}</i>`).join('');setTimeout(()=>c.innerHTML='',2600)}
 function flash(txt,color){const f=$('#flash');f.textContent=txt;f.style.color=color;f.classList.remove('show');void f.offsetWidth;f.classList.add('show');clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove('show'),650)}
 
 // ---------- figura del triángulo ----------
@@ -611,7 +631,7 @@ function ucDraw(){
     <line x1="10" y1="${CY}" x2="330" y2="${CY}" stroke="#bbb" stroke-width="1.5"/>
     <line x1="${CX}" y1="10" x2="${CX}" y2="330" stroke="#bbb" stroke-width="1.5"/>
     <line x1="${CX+R}" y1="10" x2="${CX+R}" y2="330" stroke="#efe3c5" stroke-width="1.5"/>
-    <text x="${CX+R+4}" y="22" font-size="11" fill="#b08830">x = 1</text>
+    <text x="${CX+R+4}" y="22" font-size="13" fill="#b08830">x = 1</text>
     <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#1d2b4f" stroke-width="2"/>
     <text x="318" y="${CY-6}" font-size="13" fill="#888">0°</text><text x="${CX+5}" y="22" font-size="13" fill="#888">90°</text>
     <text x="12" y="${CY-6}" font-size="13" fill="#888">180°</text><text x="${CX+5}" y="326" font-size="13" fill="#888">270°</text>
@@ -633,7 +653,8 @@ function ucDraw(){
     <div class="row cos"><span>cos ${a}°${sg('cos')}</span><span>${val('cos')}</span></div>
     <div class="row tg"><span>tg ${a}°${sg('tg')}</span><span>${val('tg')}</span></div>
     <div class="box key" style="font-size:.95rem"><b>Ángulo de referencia:</b> ${ri.txt}${ri.rule?`<br><small>${ri.rule}</small>`:''}</div>`;
-  $$('#uc-chips .chip').forEach(b=>b.classList.toggle('on',+b.dataset.a===a));
+  $$('#uc-chips .chip').forEach(b=>{b.classList.toggle('on',+b.dataset.a===a);b.setAttribute('aria-pressed',+b.dataset.a===a)});
+  const us=$('#uc-svg');us.setAttribute('aria-valuenow',a);us.setAttribute('aria-valuetext',a+' grados');
 }
 function svgAngle(svg,e,cx,cy){
   const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
@@ -648,6 +669,8 @@ function svgAngle(svg,e,cx,cy){
   svg.addEventListener('pointerdown',e=>{drag=true;svg.setPointerCapture(e.pointerId);mv(e)});
   svg.addEventListener('pointermove',e=>{if(drag)mv(e)});
   svg.addEventListener('pointerup',()=>drag=false);
+  svg.addEventListener('keydown',e=>{const st={ArrowRight:1,ArrowUp:1,ArrowLeft:-1,ArrowDown:-1,PageUp:15,PageDown:-15}[e.key];
+    if(e.key==='Home'){ucAng=0}else if(st){ucAng=((ucAng+(e.shiftKey?st*15:st))%360+360)%360}else return;e.preventDefault();ucDraw()});
   $('#uc-chips').innerHTML=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330].map(a=>`<button class="chip" data-a="${a}">${a}°</button>`).join('');
   $('#uc-chips').onclick=e=>{const b=e.target.closest('.chip');if(b){ucAng=+b.dataset.a;ucDraw()}};
 })();
@@ -815,10 +838,10 @@ function newEx(){
     ${ex.type==='num'
       ?`<form class="ans" id="ans-form"><input id="ans-in" inputmode="decimal" autocomplete="off" placeholder="Tu respuesta"> <b>${ex.unit}</b><button class="btn" type="submit">Comprobar</button></form>`
       :`<div class="opts">${ex.opts.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div>`}
-    <div class="fb" id="fb"></div>
+    <div class="fb" id="fb" role="status" aria-live="polite"></div>
     <div class="ex-actions">
       <button class="btn ghost" id="b-hint">💡 Pista</button>
-      <button class="btn ghost" id="b-sol">Ver solución</button>
+      <button class="btn ghost" id="b-sol">📖 Solución</button>
       <button class="btn" id="b-next" style="margin-left:auto">Siguiente →</button>
     </div>
     <div class="panel hint" id="p-hint">${ex.hint}</div>
@@ -832,17 +855,17 @@ function newEx(){
       if(isNaN(v)){fb.className='fb bad';fb.textContent='Escribe un número (por ejemplo 12,5 o −3/4).';return}
       ex.tries++;
       if(Math.abs(v-ex.answer)<=ex.tol){fb.className='fb ok';fb.textContent=pick(OK_MSG)+` La respuesta es ${fmt(ex.answer,ex.unit==='°'?1:2)}${ex.unit?(ex.unit==='°'?'°':' '+ex.unit):''}.`;
-        if(!ex.done){pStats.tot++;anota(ex.topic,ex.tries===1);if(ex.tries===1){pStats.ok++;pStats.streak++}else pStats.streak=0;updStats()}ex.done=true;ex.solved=true;$('#p-sol').classList.add('on');
-        if(pStats.streak&&pStats.streak%5===0)flash('🔥 '+pStats.streak+' seguidas','#e8664a');}
+        if(!ex.done){pStats.tot++;anota(ex.topic,ex.tries===1);if(ex.tries===1){pStats.ok++;pStats.streak++}else pStats.streak=0;updStats()}ex.done=true;ex.solved=true;$('#p-sol').classList.add('on');$('#b-next').focus({preventScroll:true});
+        if(pStats.streak&&pStats.streak%5===0){flash('🔥 '+pStats.streak+' seguidas','#e8664a');if(pStats.streak%10===0)celebrar()}}
       else{vibrar(40);fb.className='fb bad';fb.textContent=pick(BAD_MSG)+(ex.tries>=2?' — mira la solución si te atascas.':'');if(ex.tries===1)$('#p-hint').classList.add('on')}
     };
     setTimeout(()=>$('#ans-in')?.focus({preventScroll:true}),50);
   }else{
     $$('.opt').forEach(b=>b.onclick=()=>{if(ex.done)return;ex.done=true;const i=+b.dataset.i,fb=$('#fb');pStats.tot++;
       $$('.opt').forEach((o,j)=>{o.disabled=true;if(j===ex.correct)o.classList.add('ok')});
-      anota(ex.topic,i===ex.correct);if(i===ex.correct){pStats.ok++;pStats.streak++;fb.className='fb ok';fb.textContent=pick(OK_MSG);if(pStats.streak%5===0)flash('🔥 '+pStats.streak+' seguidas','#e8664a')}
-      else{vibrar(40);b.classList.add('bad');pStats.streak=0;fb.className='fb bad';fb.textContent='Era la marcada en verde.';$('#p-sol').classList.add('on')}
-      updStats()});
+      anota(ex.topic,i===ex.correct);if(i===ex.correct){pStats.ok++;pStats.streak++;fb.className='fb ok';fb.textContent=pick(OK_MSG);if(pStats.streak%5===0){flash('🔥 '+pStats.streak+' seguidas','#e8664a');if(pStats.streak%10===0)celebrar()}}
+      else{vibrar(40);b.classList.add('bad');pStats.streak=0;fb.className='fb bad';fb.textContent=`No. La correcta es ${ex.opts[ex.correct]} (marcada con ✓).`;$('#p-sol').classList.add('on')}
+      updStats();$('#b-next').focus({preventScroll:true})});
   }
 }
 
@@ -850,11 +873,11 @@ function newEx(){
 const CRONO_T=60;let cr=null;
 function quickQ(){for(let i=0;i<20;i++){const g=pick([genNotables,genNotables,genReduccion,genReduccion,genSignos,genRad]);const q=g();if(q.type==='mc')return q}return genNotables()}
 function startCrono(){
-  cr={score:0,ok:0,tot:0,streak:0,end:Date.now()+CRONO_T*1000,lock:false};
-  $('#game-menu').style.display='none';const ga=$('#game-area');ga.style.display='block';
+  cr={score:0,ok:0,tot:0,streak:0,end:Date.now()+CRONO_T*1000,lock:false};history.pushState({game:1},'',location.hash);
+  window.scrollTo(0,0);$('#game-menu').style.display='none';const ga=$('#game-area');ga.style.display='block';
   ga.innerHTML=`<div class="hud"><div class="stat"><b id="c-score">0</b><small>puntos</small></div><div class="stat"><b id="c-mult">×1</b><small>multiplicador</small></div><div class="stat"><b id="c-time">${CRONO_T}</b><small>segundos</small></div><button class="btn ghost" id="c-quit">Salir</button></div>
    <div class="timebar"><div id="c-bar" style="width:100%"></div></div><div id="c-q"></div>`;
-  $('#c-quit').onclick=()=>{clearInterval(cr.iv);cr=null;showGameMenu()};
+  $('#c-quit').onclick=()=>salirJuego();
   cr.iv=setInterval(()=>{const left=Math.max(0,(cr.end-Date.now())/1000);$('#c-time').textContent=Math.ceil(left);$('#c-bar').style.width=(left/CRONO_T*100)+'%';if(left<=0)endCrono()},100);
   nextCrono();
 }
@@ -862,13 +885,14 @@ function multOf(s){return Math.min(5,1+Math.floor(s/3))}
 function nextCrono(){
   if(!cr)return;const q=quickQ();cr.q=q;cr.lock=false;
   $('#c-q').innerHTML=`<div class="q-big">${q.q}</div><div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div>`;
+  setTimeout(()=>{const f=$('#c-q .opt');if(f&&document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#c-q,#game-area'))f.focus({preventScroll:true})},0);
   $$('#c-q .opt').forEach(b=>b.onclick=()=>{if(cr.lock)return;cr.lock=true;cr.tot++;const i=+b.dataset.i;
-    if(i===q.correct){cr.streak++;cr.ok++;const m=multOf(cr.streak-1);cr.score+=10*m;b.classList.add('ok');flash('+'+10*m,'#2a9d8f');setTimeout(nextCrono,250)}
-    else{vibrar(40);cr.streak=0;b.classList.add('bad');$$('#c-q .opt')[q.correct].classList.add('ok');setTimeout(nextCrono,900)}
+    if(i===q.correct){cr.streak++;cr.ok++;const m=multOf(cr.streak-1);cr.score+=10*m;b.classList.add('ok');flash('+'+10*m,'#2a9d8f');anunciar('Correcto, más '+10*m);setTimeout(nextCrono,250)}
+    else{vibrar(40);cr.streak=0;b.classList.add('bad');$$('#c-q .opt')[q.correct].classList.add('ok');anunciar('No, era '+q.opts[q.correct]);setTimeout(nextCrono,900)}
     $('#c-score').textContent=cr.score;$('#c-mult').textContent='×'+multOf(cr.streak)});
 }
 function endCrono(){
-  clearInterval(cr.iv);const rec=store.get('trigolab-rec-crono')||0;const nuevo=cr.score>rec;if(nuevo)store.set('trigolab-rec-crono',cr.score);
+  clearInterval(cr.iv);finJuegoHist();const rec=store.get('trigolab-rec-crono',0);const nuevo=cr.score>rec&&cr.score>0;if(nuevo){store.set('trigolab-rec-crono',cr.score);celebrar()}
   $('#game-area').innerHTML=`<div class="end"><h2>¡Tiempo!</h2><div class="big">${cr.score}</div><p>puntos · ${cr.ok} de ${cr.tot} aciertos</p>
    <p class="rec">${nuevo?'🏆 ¡Nuevo récord!':'Récord: '+rec}</p>
    <p>${cr.ok>=20?'¡Eres una máquina de la trigonometría!':cr.ok>=10?'¡Muy buen ritmo! A por el récord.':'Repasa los ángulos notables y vuelve a intentarlo 💪'}</p>
@@ -879,28 +903,34 @@ function endCrono(){
 // ---------- juego 2: diana ----------
 let dn=null;const DR=130;
 function startDiana(){
-  dn={round:0,score:0};$('#game-menu').style.display='none';$('#game-area').style.display='block';nextDiana();
+  dn={round:0,score:0};history.pushState({game:1},'',location.hash);$('#game-menu').style.display='none';$('#game-area').style.display='block';nextDiana();
 }
 function nextDiana(){
-  dn.round++;const a=rnd(0,23)*15;const asRad=Math.random()<.5&&a!==0;dn.target=a;dn.answered=false;
+  window.scrollTo(0,0);dn.round++;const a=rnd(0,23)*15;const asRad=Math.random()<.5&&a!==0;dn.target=a;dn.answered=false;
   $('#game-area').innerHTML=`<div class="hud"><div class="stat"><b>${dn.round}/10</b><small>ronda</small></div><div class="stat"><b id="d-score">${dn.score}</b><small>puntos</small></div><button class="btn ghost" id="d-quit">Salir</button></div>
     <div class="target">Toca donde está el ángulo<br><b>${asRad?radStr(a)+' rad':a+'°'}</b></div>
-    <svg id="diana-svg" viewBox="0 0 340 340"></svg><div class="fb" id="d-fb" style="text-align:center"></div>
+    <svg id="diana-svg" viewBox="0 0 340 340" tabindex="0" role="application" aria-label="Circunferencia: toca el punto del ángulo, o gira con las flechas y pulsa Intro"></svg><div class="fb" id="d-fb" role="status" aria-live="polite" style="text-align:center"></div>
     <div style="text-align:center;margin-top:8px"><button class="btn teal" id="d-next" style="visibility:hidden">${dn.round===10?'Ver resultado':'Siguiente →'}</button></div>`;
-  $('#d-quit').onclick=()=>{dn=null;showGameMenu()};
+  $('#d-quit').onclick=()=>salirJuego();
   $('#d-next').onclick=()=>dn.round>=10?endDiana():nextDiana();
   drawDiana();
   const svg=$('#diana-svg');
-  svg.addEventListener('pointerdown',e=>{if(dn.answered)return;const u=svgAngle(svg,e,170,170);dn.answered=true;dn.user=u;
+  const responder=u=>{if(dn.answered)return;dn.answered=true;dn.user=u;
     let err=Math.abs(u-dn.target)%360;if(err>180)err=360-err;const pts=Math.max(0,Math.round(100-err*100/45));dn.score+=pts;
-    drawDiana();$('#d-score').textContent=dn.score;
+    drawDiana();$('#d-score').textContent=dn.score;if(pts<40)vibrar(40);
     const fb=$('#d-fb');fb.className='fb '+(pts>=60?'ok':'bad');fb.textContent=`Te has desviado ${fmt(err,0)}° → +${pts} puntos${err<5?' 🎯 ¡En el centro!':''}`;
-    $('#d-next').style.visibility='visible'});
+    const nb=$('#d-next');nb.style.visibility='visible';nb.focus({preventScroll:true})};
+  svg.addEventListener('pointerdown',e=>responder(svgAngle(svg,e,170,170)));
+  // Con teclado: las flechas giran una aguja y Intro la fija
+  svg.addEventListener('keydown',e=>{if(dn.answered)return;const st={ArrowRight:-5,ArrowDown:-5,ArrowLeft:5,ArrowUp:5}[e.key];
+    if(st){e.preventDefault();dn.kb=(((dn.kb??0)+(e.shiftKey?st*3:st))%360+360)%360;drawDiana();$('#d-fb').textContent='Aguja en '+dn.kb+'°'}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();responder(dn.kb??0)}});
 }
 function drawDiana(){
   const cx=170,cy=170;let ticks='';
   for(let a=0;a<360;a+=15){const r=rad(a),l=a%90===0?14:a%45===0||a%30===0?9:5;ticks+=`<line x1="${cx+(DR-l)*Math.cos(r)}" y1="${cy-(DR-l)*Math.sin(r)}" x2="${cx+DR*Math.cos(r)}" y2="${cy-DR*Math.sin(r)}" stroke="#1d2b4f" stroke-width="${a%90===0?2.5:1.5}"/>`}
   let extra='';
+  if(!dn.answered&&dn.kb!=null){const r=rad(dn.kb);extra=`<line x1="${cx}" y1="${cy}" x2="${cx+DR*Math.cos(r)}" y2="${cy-DR*Math.sin(r)}" stroke="#e8664a" stroke-width="3" stroke-dasharray="6 4"/><circle cx="${cx+DR*Math.cos(r)}" cy="${cy-DR*Math.sin(r)}" r="8" fill="#e8664a"/>`}
   if(dn.answered){const pt=a=>[cx+DR*Math.cos(rad(a)),cy-DR*Math.sin(rad(a))];const [ux,uy]=pt(dn.user),[tx,ty]=pt(dn.target);
     extra=`<line x1="${cx}" y1="${cy}" x2="${tx}" y2="${ty}" stroke="#2a9d8f" stroke-width="4"/><circle cx="${tx}" cy="${ty}" r="10" fill="#2a9d8f"/>
       <line x1="${cx}" y1="${cy}" x2="${ux}" y2="${uy}" stroke="#e8664a" stroke-width="3" stroke-dasharray="6 4"/><circle cx="${ux}" cy="${uy}" r="8" fill="#e8664a"/>
@@ -910,13 +940,16 @@ function drawDiana(){
     ${ticks}<text x="${cx+DR+6}" y="${cy-6}" font-size="13" fill="#888">0°</text><circle cx="${cx}" cy="${cy}" r="4" fill="#1d2b4f"/>${extra}`;
 }
 function endDiana(){
-  const rec=store.get('trigolab-rec-diana')||0;const nuevo=dn.score>rec;if(nuevo)store.set('trigolab-rec-diana',dn.score);
+  finJuegoHist();const rec=store.get('trigolab-rec-diana',0);const nuevo=dn.score>rec&&dn.score>0;if(nuevo){store.set('trigolab-rec-diana',dn.score);celebrar()}
   $('#game-area').innerHTML=`<div class="end"><h2>¡Diana completada!</h2><div class="big">${dn.score}</div><p>de 1000 puntos posibles</p>
    <p class="rec">${nuevo?'🏆 ¡Nuevo récord!':'Récord: '+rec}</p>
    <p>${dn.score>=850?'¡Puntería de experto!':dn.score>=600?'¡Muy bien! Ya dominas la circunferencia.':'Practica con la circunferencia de la lección 4 y vuelve 💪'}</p>
    <button class="btn teal" id="again">Otra vez</button> <button class="btn ghost" id="back">Volver</button></div>`;
   dn=null;$('#again').onclick=startDiana;$('#back').onclick=showGameMenu;
 }
+function finJuegoHist(){if(history.state&&history.state.game)history.replaceState(null,'',location.hash)}
+function salirJuego(fromPop){if(cr){clearInterval(cr.iv);cr=null}dn=null;
+  if(!fromPop&&history.state&&history.state.game){skipPop=true;history.back()}showGameMenu();$('#start-crono').focus({preventScroll:true})}
 function showGameMenu(){
   $('#game-area').style.display='none';$('#game-menu').style.display='block';
   const r1=store.get('trigolab-rec-crono'),r2=store.get('trigolab-rec-diana');
@@ -944,9 +977,11 @@ showLesson(Math.min(store.get('trigolab-lesson',0),lessons.length-1));updTri();u
 /* ===================== VERSIÓN, AVISO Y AUTORÍA ===================== */
 const VERSION=(document.querySelector('meta[name="app-version"]')||{}).content||"dev";
 const NOVEDADES=[
+  ["1.2",["🍏 Revisada con las guías de diseño de Apple: botones de al menos 44 puntos, textos legibles, tamaño de letra «Enorme» y el icono en la cabecera","♿ Revisada con las pautas de accesibilidad WCAG 2.2: más contraste en los textos de color, lectores de pantalla, teclado (también la circunferencia y la Diana) y foco visible","📱 En Practicar, el botón «Siguiente» queda siempre a mano, y la Diana cabe en la pantalla sin moverla","↩️ El botón «atrás» del móvil sale del juego y cierra las ventanas","🎉 Celebración al batir un récord o al encadenar 10 aciertos","🔎 Revisadas todas las preguntas: opciones distintas y respuestas comprobadas"]],
   ["1.1",["📲 Se puede instalar en el móvil como una app y funciona sin conexión","🔄 Se actualiza sola cuando hay una versión nueva, sin cortar un juego ni un ejercicio a medias","⚙️ Nuevo botón de Ajustes: tamaño de letra, modo claro u oscuro, instalar, autores y aviso","📊 Tu progreso por temas se guarda, y las lecciones que ya has visto se marcan con ✓","📱 Menú más cómodo en el móvil, botones más fáciles de tocar y ✓ / ✗ en las respuestas","🖼️ Al compartir el enlace por WhatsApp sale una vista previa con el icono"]],
   ["1.0",["Primera versión: 7 lecciones interactivas, práctica con 7 temas y dos juegos (Contrarreloj y Diana goniométrica)"]]
 ];
+$('#hd-ver').textContent='v'+((document.querySelector('meta[name="app-version"]')||{}).content||'');
 const AUTORES="Adela Moreno Vega y Carlos Moreno Otto";
 const DISCLAIMER="Esta app es una ayuda para repasar y puede contener errores. <b>En caso de error o duda, la fuente fiable es el material oficial de la asignatura de Matemáticas</b> (libro de texto y apuntes del profesorado).";
 $('#foot').innerHTML=`<p>${DISCLAIMER}</p><p>© ${new Date().getFullYear()} <b>Adela Moreno Vega</b> y <b>Carlos Moreno Otto</b> · <button class="ver" id="foot-ver">v${VERSION} · Ajustes y novedades</button></p>`;
@@ -962,8 +997,10 @@ function openSheet(html,label){const s=$('#sheet');
 function closeSheet(fromPop){const s=$('#sheet');if(s.hidden)return;s.hidden=true;s.innerHTML='';
   if(sheetOpener&&document.body.contains(sheetOpener))sheetOpener.focus({preventScroll:true});sheetOpener=null;
   if(!fromPop&&history.state&&history.state.sheet){skipPop=true;history.back()}}
-addEventListener('popstate',()=>{if(skipPop){skipPop=false;return}closeSheet(true)});
-addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+addEventListener('popstate',()=>{if(skipPop){skipPop=false;return}if(!$('#sheet').hidden){closeSheet(true);return}if(cr||dn)salirJuego(true)});
+addEventListener('keydown',e=>{if($('#sheet').hidden)return;if(e.key==='Escape'){closeSheet();return}
+  if(e.key==='Tab'){const f=[...$('#sheet').querySelectorAll('button:not([disabled]),a[href],input')];if(!f.length)return;const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&(document.activeElement===a||document.activeElement.classList.contains('sheet'))){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
 $('#sheet').addEventListener('click',e=>{if(e.target.dataset.close||e.target.closest('[data-close="btn"]'))closeSheet()});
 // Arrastrar la hoja hacia abajo para cerrarla
 (function(){let y0=null,dy=0,el=null;
@@ -977,7 +1014,7 @@ function applyLook(){const r=document.documentElement;r.dataset.fs=PREF.fs;
   const dark=PREF.theme==='dark'||(PREF.theme==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
   r.dataset.theme=dark?'dark':'light';}
 applyLook();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyLook);
-const FS=[['s','Pequeña'],['m','Normal'],['l','Grande'],['xl','Muy grande']];
+const FS=[['s','Pequeña'],['m','Normal'],['l','Grande'],['xl','Muy grande'],['xxl','Enorme']];
 const THEMES=[['auto','Automático'],['light','Claro'],['dark','Oscuro']];
 function openSettings(){
   openSheet(`<h2>Ajustes</h2>
