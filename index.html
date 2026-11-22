@@ -1,43 +1,103 @@
 <!DOCTYPE html>
+<!--
+  TrigoLab · Trigonometría 4º ESO
+  © 2026 Adela Moreno Vega y Carlos Moreno Otto. Todos los derechos reservados.
+  Prohibida la copia, modificación o distribución total o parcial sin autorización de los autores.
+  https://indalo-apps.github.io/trigonometria/
+-->
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="app-version" content="1.1">
+<meta name="theme-color" content="#1d2b4f">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TrigoLab">
 <title>TrigoLab · Trigonometría 4º ESO</title>
+<meta name="author" content="Adela Moreno Vega y Carlos Moreno Otto">
+<meta name="description" content="App para aprender, practicar y jugar con la trigonometría de 4º ESO. Autores: Adela Moreno Vega y Carlos Moreno Otto.">
+<meta name="copyright" content="© 2026 Adela Moreno Vega y Carlos Moreno Otto. Todos los derechos reservados.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="TrigoLab · Trigonometría 4º ESO">
+<meta property="og:title" content="TrigoLab · Trigonometría 4º ESO">
+<meta property="og:description" content="Aprende, practica y juega con la trigonometría: razones, ángulos notables, circunferencia goniométrica, radianes y problemas. Gratis y sin registrarse.">
+<meta property="og:url" content="https://indalo-apps.github.io/trigonometria/">
+<meta property="og:image" content="https://indalo-apps.github.io/trigonometria/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrigoLab: icono de la app y un triángulo rectángulo con seno, coseno y tangente">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
 :root{
-  --ink:#1d2b4f; --ink2:#4a5677; --paper:#fbf7f0; --card:#ffffff; --line:#e6dfd2;
+  --ink:#1d2b4f; --ink2:#4a5677; --paper:#fbf7f0; --card:#ffffff; --line:#e6dfd2; --soft:#f4efe4; --th:#f3efe6; --key:#eef1f8;
+  --head:#1d2b4f; --btn:#1d2b4f; --btn-ink:#fff;
   --sen:#e8664a; --cos:#2a9d8f; --tg:#d99a1e; --ok:#2a9d8f; --bad:#d64545;
-  --sen-l:#fde8e2; --cos-l:#dff3f0; --tg-l:#fbf0d6;
-  --r:16px;
+  --sen-l:#fde8e2; --cos-l:#dff3f0; --tg-l:#fbf0d6; --bad-l:#fbe1e1; --muted:#888; --axis:#c4c4c4;
+  --r:16px; color-scheme:light;
 }
+:root[data-theme="dark"]{
+  --ink:#e8ecf5; --ink2:#a9b3c9; --paper:#121826; --card:#1b2334; --line:#2f3a51; --soft:#232d42; --th:#253049; --key:#202b44;
+  --head:#0c1220; --btn:#e8ecf5; --btn-ink:#121826;
+  --sen:#f07a5f; --cos:#3cb5a6; --tg:#e8ae34; --ok:#3cb5a6; --bad:#ef6b6b;
+  --sen-l:#43261f; --cos-l:#163a36; --tg-l:#3f3318; --bad-l:#4a2222; --muted:#8a94aa; --axis:#4a5672; color-scheme:dark;
+}
+html[data-fs="s"]{font-size:15px} html,html[data-fs="m"]{font-size:17px} html[data-fs="l"]{font-size:19px} html[data-fs="xl"]{font-size:21px}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{font-family:Nunito,system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:17px;line-height:1.55}
+html{background:var(--paper);overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:1rem;line-height:1.55;-webkit-tap-highlight-color:transparent}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
 h2{font-size:1.7rem} h3{font-size:1.2rem}
 p{margin:.4em 0 .9em}
-button{font:inherit;cursor:pointer}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
 .sen{color:var(--sen)} .cos{color:var(--cos)} .tg{color:var(--tg)}
 b.sen,b.cos,b.tg{font-weight:800}
+.muted{color:var(--ink2)}
+[hidden]{display:none!important}
 
-/* header */
-header{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff;display:flex;align-items:center;gap:16px;padding:10px 20px;flex-wrap:wrap}
+/* colores de las figuras: siguen al modo claro / oscuro */
+main svg [fill="#1d2b4f"]{fill:var(--ink)} main svg [stroke="#1d2b4f"]{stroke:var(--ink)}
+main svg [fill="#fff"]{fill:var(--card)} main svg [stroke="#fff"]{stroke:var(--card)}
+main svg [stroke="#bbb"],main svg [stroke="#ccc"]{stroke:var(--axis)}
+main svg [fill="#888"],main svg [fill="#bbb"]{fill:var(--muted)}
+main svg [fill="#e8664a"]{fill:var(--sen)} main svg [stroke="#e8664a"]{stroke:var(--sen)}
+main svg [fill="#2a9d8f"]{fill:var(--cos)} main svg [stroke="#2a9d8f"]{stroke:var(--cos)}
+main svg [fill="#d99a1e"]{fill:var(--tg)} main svg [stroke="#d99a1e"]{stroke:var(--tg)}
+main svg [fill="#e9e2d3"]{fill:var(--soft)}
+
+/* cabecera */
+header{position:sticky;top:0;z-index:10;background:var(--head);color:#fff;display:flex;align-items:center;gap:14px;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(18px,env(safe-area-inset-right,0px)) 10px max(18px,env(safe-area-inset-left,0px));flex-wrap:wrap}
 .brand{font-family:Fraunces,serif;font-weight:800;font-size:1.35rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
 .brand svg{width:30px;height:30px}
-.brand small{font-family:Nunito;font-weight:700;font-size:.75rem;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:99px}
-nav.main{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
-nav.main a{color:#fff;text-decoration:none;font-weight:700;padding:7px 14px;border-radius:99px;opacity:.8}
+.brand small{font-family:Nunito;font-weight:700;font-size:.72rem;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:99px}
+nav.main{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;order:1}
+.brand{order:0}
+nav.main a{color:#fff;text-decoration:none;font-weight:700;padding:8px 14px;border-radius:99px;opacity:.8;display:flex;align-items:center;gap:6px}
 nav.main a:hover{opacity:1;background:rgba(255,255,255,.1)}
-nav.main a.on{opacity:1;background:#fff;color:var(--ink)}
+nav.main a.on{opacity:1;background:#fff;color:#1d2b4f}
+nav.main a .i{font-size:1.05em}
+.gear{order:2;background:none;border:0;color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;opacity:.85;flex:none}
+.gear:hover{opacity:1;background:rgba(255,255,255,.1)}
+.gear svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-main{max-width:1060px;margin:0 auto;padding:24px 18px 60px}
+main{max-width:1060px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-right,0px)) 40px max(18px,env(safe-area-inset-left,0px))}
 .view{display:none} .view.on{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:0 2px 0 var(--line)}
 
-/* home */
+/* inicio */
 .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;margin:10px 0 30px}
 .hero h1{font-size:2.6rem}
 .hero p{font-size:1.1rem;color:var(--ink2)}
@@ -50,112 +110,171 @@ main{max-width:1060px;margin:0 auto;padding:24px 18px 60px}
 .mode .ico{font-size:2rem}
 .mode h3{margin:.3em 0}
 .mode p{color:var(--ink2);margin:0}
+.install-banner{display:flex;align-items:center;gap:10px;background:#ffe066;color:#2b2100;border:1.5px solid #e6bf2e;border-radius:14px;padding:10px 6px 10px 12px;margin-bottom:18px;box-shadow:0 6px 18px -10px rgb(0 0 0 / .4)}
+:root[data-theme="dark"] .install-banner{background:#5a4706;color:#fff3c4;border-color:#8a6e12}
+.install-banner img{flex:none;width:38px;height:38px;border-radius:9px}
+.install-banner div{flex:1;min-width:0;font-size:.9rem;line-height:1.3}
+.install-banner b{display:block;font-size:.98rem}
+.install-banner .btn{background:#2b2100;color:#ffe066;padding:10px 14px;font-size:.9rem}
+:root[data-theme="dark"] .install-banner .btn{background:#ffe066;color:#2b2100}
+.x{flex:none;width:44px;height:44px;border:0;background:none;color:inherit;font-size:1.3rem;opacity:.7}
 
-/* learn */
+/* aprender */
 .learn{display:grid;grid-template-columns:230px 1fr;gap:22px;align-items:start}
-.subnav{position:sticky;top:76px;display:flex;flex-direction:column;gap:4px}
-.subnav button{text-align:left;background:none;border:0;padding:9px 12px;border-radius:10px;font-weight:700;color:var(--ink2)}
-.subnav button:hover{background:#fff}
-.subnav button.on{background:var(--ink);color:#fff}
+.subnav{position:sticky;top:80px;display:flex;flex-direction:column;gap:4px}
+.subnav button{text-align:left;background:none;border:0;padding:10px 12px;border-radius:10px;font-weight:700;color:var(--ink2)}
+.subnav button:hover{background:var(--card)}
+.subnav button.on{background:var(--btn);color:var(--btn-ink)}
 .subnav button span{opacity:.55;margin-right:6px}
+.subnav button.seen::after{content:" ✓";color:var(--ok);font-weight:800}
+.subnav button.on.seen::after{color:inherit}
 .lesson{display:none} .lesson.on{display:block}
 .box{border-radius:12px;padding:12px 16px;margin:12px 0}
-.box.key{background:#eef1f8;border-left:5px solid var(--ink)}
+.box.key{background:var(--key);border-left:5px solid var(--ink)}
 .box.tip{background:var(--tg-l);border-left:5px solid var(--tg)}
-.formula{font-size:1.15rem;font-weight:700;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;padding:14px;background:#f6f3ec;border-radius:12px;margin:12px 0}
+.formula{font-size:1.15rem;font-weight:700;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;padding:14px;background:var(--soft);border-radius:12px;margin:12px 0}
 .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;font-size:.92em}
 .frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
 .frac>span:last-child{padding:0 4px}
-.lesson-nav{display:flex;justify-content:space-between;margin-top:22px}
-.btn{background:var(--ink);color:#fff;border:0;border-radius:99px;padding:10px 20px;font-weight:800}
-.btn:hover{filter:brightness(1.15)}
+.lesson-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.btn{background:var(--btn);color:var(--btn-ink);border:0;border-radius:99px;padding:11px 20px;font-weight:800;min-height:44px}
+.btn:hover{filter:brightness(1.12)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-.btn.coral{background:var(--sen)} .btn.teal{background:var(--cos)}
+.btn.coral{background:var(--sen);color:#fff} .btn.teal{background:var(--cos);color:#fff}
+.btn.block{width:100%}
 .btn:disabled{opacity:.35;cursor:default}
 .inter{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;margin:14px 0}
 .ctrl{margin:8px 0}
 .ctrl label{display:flex;justify-content:space-between;font-weight:700}
-input[type=range]{width:100%;accent-color:var(--ink)}
-.ratio{font-size:1.08rem;padding:8px 12px;border-radius:10px;margin:6px 0;display:flex;align-items:center;flex-wrap:wrap;gap:4px}
-.ratio.sen{background:var(--sen-l);color:var(--ink)} .ratio.cos{background:var(--cos-l);color:var(--ink)} .ratio.tg{background:var(--tg-l);color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--sen);height:32px}
+.ratio{font-size:1.08rem;padding:8px 12px;border-radius:10px;margin:6px 0;display:flex;align-items:center;flex-wrap:wrap;gap:4px;color:var(--ink)}
+.ratio.sen{background:var(--sen-l)} .ratio.cos{background:var(--cos-l)} .ratio.tg{background:var(--tg-l)}
 .ratio strong{font-size:1.15em}
-table{border-collapse:collapse;width:100%;margin:10px 0;background:#fff;border-radius:12px;overflow:hidden}
+.tablewrap{overflow-x:auto;margin:10px 0;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:12px;overflow:hidden}
 th,td{border:1px solid var(--line);padding:8px 10px;text-align:center}
-th{background:#f3efe6;font-family:Fraunces,serif}
+th{background:var(--th);font-family:Fraunces,serif}
 svg text{font-family:Nunito,sans-serif}
 .tri .side{stroke-width:4;stroke-linecap:round}
 .tri .adj{stroke:var(--cos)} .tri .opp{stroke:var(--sen)} .tri .hyp{stroke:var(--ink)}
-.tri .tri-fill{fill:#f4efe4}
+.tri .tri-fill{fill:var(--soft)}
 .tri .rt{fill:none;stroke:var(--ink2);stroke-width:2}
 .tri .arc{fill:none;stroke:var(--ink);stroke-width:2.5}
 .tri .lbl{font-size:17px;font-weight:800}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.chip{background:#fff;border:2px solid var(--line);border-radius:99px;padding:5px 12px;font-weight:700;font-size:.92rem;color:var(--ink)}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:99px;padding:7px 13px;font-weight:700;font-size:.92rem;color:var(--ink);min-height:40px}
 .chip:hover{border-color:var(--ink2)}
-.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
-.uc-out .row{display:flex;justify-content:space-between;padding:6px 10px;border-radius:8px;margin:4px 0;font-weight:700}
-.uc-out .row.sen{background:var(--sen-l);color:var(--ink)} .uc-out .row.cos{background:var(--cos-l);color:var(--ink)} .uc-out .row.tg{background:var(--tg-l);color:var(--ink)}
+.chip.on{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+.uc-out .row{display:flex;justify-content:space-between;padding:6px 10px;border-radius:8px;margin:4px 0;font-weight:700;color:var(--ink)}
+.uc-out .row.sen{background:var(--sen-l)} .uc-out .row.cos{background:var(--cos-l)} .uc-out .row.tg{background:var(--tg-l)}
 .uc-out .big{font-family:Fraunces,serif;font-size:2rem}
-#uc-svg,#diana-svg{touch-action:none;cursor:grab;user-select:none;width:100%;max-width:380px;display:block;margin:auto}
+#uc-svg,#diana-svg{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;width:100%;max-width:380px;display:block;margin:auto}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .grid3 .card{padding:16px}
 
-/* practice */
+/* practicar */
 .toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
-.stats{display:flex;gap:10px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 14px;text-align:center;min-width:80px}
+.stats{display:flex;gap:8px;align-items:stretch}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 14px;text-align:center;min-width:76px}
 .stat b{display:block;font-size:1.3rem;font-family:Fraunces,serif}
 .stat small{color:var(--ink2);font-weight:700}
+button.stat{font:inherit;color:var(--ink)}
 .ex{max-width:780px;margin:0 auto}
-.ex-tag{display:inline-block;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);background:#f1ece2;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.ex-tag{display:inline-block;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);background:var(--soft);padding:3px 10px;border-radius:99px;margin-bottom:10px}
 .ex-text{font-size:1.18rem}
 .ex-fig{max-width:400px;margin:4px auto}
 .ans{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
-.ans input{font:inherit;font-size:1.15rem;font-weight:700;padding:9px 14px;border:2px solid var(--line);border-radius:12px;width:200px;color:var(--ink)}
+.ans input{font:inherit;font-size:1.15rem;font-weight:700;padding:9px 14px;border:2px solid var(--line);border-radius:12px;width:200px;max-width:60vw;color:var(--ink);background:var(--card);min-height:46px}
 .ans input:focus{outline:none;border-color:var(--ink)}
 .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
-.opt{background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px;font-size:1.2rem;font-weight:800;color:var(--ink)}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px;font-size:1.2rem;font-weight:800;color:var(--ink);min-height:56px}
 .opt:hover:not(:disabled){border-color:var(--ink)}
 .opt.ok{background:var(--cos-l);border-color:var(--ok)}
-.opt.bad{background:#fbe1e1;border-color:var(--bad)}
-.opt:disabled{cursor:default}
+.opt.bad{background:var(--bad-l);border-color:var(--bad)}
+.opt.ok::before{content:"✓ ";color:var(--ok)} .opt.bad::before{content:"✗ ";color:var(--bad)}
+.opt:disabled{cursor:default;color:var(--ink)}
 .fb{font-weight:800;min-height:1.6em;font-size:1.08rem}
 .fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
 .ex-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .panel{margin-top:14px;padding:12px 16px;border-radius:12px;display:none}
 .panel.on{display:block}
 .panel.hint{background:var(--tg-l)}
-.panel.sol{background:#eef1f8}
+.panel.sol{background:var(--key)}
 .panel ol{margin:4px 0;padding-left:22px}
+.progrow{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;margin:10px 0}
+.progrow .bar{grid-column:1/-1;height:10px;background:var(--soft);border-radius:99px;overflow:hidden}
+.progrow .bar>div{height:100%;background:var(--cos);border-radius:99px}
 
-/* games */
+/* juegos */
 .games{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .game-card h3{margin-top:6px}
 .rec{font-weight:800;color:var(--ink2);font-size:.95rem}
 .hud{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .hud .stat b{font-size:1.5rem}
-.timebar{height:10px;background:#ece5d7;border-radius:99px;overflow:hidden;margin-bottom:16px}
+.timebar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:16px}
 .timebar>div{height:100%;background:var(--sen);transition:width .1s linear}
 .q-big{font-family:Fraunces,serif;font-size:2rem;text-align:center;margin:14px 0}
-.flash{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-size:3rem;font-weight:800;pointer-events:none;opacity:0;transition:opacity .2s, transform .5s}
+.flash{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-size:3rem;font-weight:800;pointer-events:none;opacity:0;transition:opacity .2s, transform .5s;z-index:30}
 .flash.show{opacity:1;transform:translate(-50%,-90%)}
 .end{text-align:center}
 .end .big{font-family:Fraunces,serif;font-size:3.4rem;margin:.1em 0}
 .target{text-align:center;font-size:1.25rem}
 .target b{font-family:Fraunces,serif;font-size:2.2rem;color:var(--sen)}
-footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
+
+/* pie, aviso y autoría */
+footer{text-align:center;color:var(--ink2);font-size:.82rem;padding:10px max(18px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px));max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+footer p{margin:0} footer b{color:var(--ink)}
+.disclaimer{background:#fff4d1;color:#4a3800;border:1px solid #f0d27a;border-radius:12px;padding:10px 12px;font-size:.85rem;line-height:1.45}
+:root[data-theme="dark"] .disclaimer{background:#3d3208;color:#fff0bf;border-color:#6b5713}
+.ver{background:none;border:0;color:var(--ink2);font-size:.8rem;text-decoration:underline;text-underline-offset:2px;padding:8px}
+
+/* hojas (ajustes, novedades, instalar, progreso) */
+.sheet-bg{position:fixed;inset:0;background:rgb(5 10 18 / .5);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);color:var(--ink);width:100%;max-width:560px;max-height:88%;overflow-y:auto;border-radius:20px 20px 0 0;
+  padding:10px max(18px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out;outline:none}
+.sheet.drag{transition:none}
+@keyframes up{from{transform:translateY(40px);opacity:.4}}
+.grab{width:42px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+.sheet-nav{display:flex;gap:8px;margin-top:16px}
+.sheet-nav .btn{flex:1}
+.set-group{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.set-group h3{margin:0;font-size:1rem}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));background:var(--soft);border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
+.seg button{border:0;background:none;padding:8px 10px;border-radius:8px;font-size:.85rem;font-weight:700;color:var(--ink2);min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgb(0 0 0 / .15)}
+.about{display:flex;align-items:center;gap:12px}.about img{border-radius:11px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.nov h4{font-family:Fraunces,serif;margin:14px 0 4px}
+.nov ul{margin:0;padding-left:20px} .nov li{margin:3px 0}
+.steps{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:st}
+.steps li{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:12px;padding:10px 12px;counter-increment:st}
+.steps li::before{content:counter(st);flex:none;width:26px;height:26px;border-radius:50%;background:var(--sen);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.steps svg{width:20px;height:20px;vertical-align:-4px;stroke:var(--sen);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.kbd{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:6px;padding:0 6px;font-weight:700}
+.hintbox{background:var(--tg-l);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--bad-l);border-radius:12px;padding:10px 12px;margin-top:10px}
+#barra-act{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top,0px));z-index:60;background:var(--sen);color:#fff;font-weight:800;font-size:.9rem;padding:9px 16px;border-radius:999px;box-shadow:0 6px 20px -8px rgb(0 0 0 / .5)}
 
 @media (max-width:820px){
   .hero,.inter{grid-template-columns:1fr}
   .modes,.games{grid-template-columns:1fr}
   .learn{grid-template-columns:1fr}
-  .subnav{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .subnav{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px;margin-inline:-4px;scrollbar-width:none}
   .subnav button{white-space:nowrap}
   .hero h1{font-size:2rem}
-  nav.main{margin-left:0;gap:2px}
-  nav.main a{padding:6px 10px;font-size:.92rem}
-  header{gap:8px;padding:10px 14px}
+  header{gap:4px 8px;padding-bottom:6px}
+  .gear{margin-left:auto}
+  nav.main{order:3;width:100%;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+  nav.main a{flex-direction:column;gap:0;padding:6px 2px;border-radius:12px;font-size:.78rem;justify-content:center}
+  nav.main a .i{font-size:1.3rem;line-height:1.2}
+  main{padding-top:16px}
+  .card{padding:16px}
+  h2{font-size:1.45rem}
+  .q-big{font-size:1.7rem}
+  .stats .stat{min-width:64px;padding:6px 10px}
 }
+@media (max-width:420px){ .install-banner div span{display:none} .install-banner .btn{padding:8px 12px} .opt{font-size:1.05rem;padding:10px 6px} .formula{font-size:1rem} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
 </style>
 </head>
 <body>
@@ -164,17 +283,19 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
     <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M20 20 L31.3 8.7" stroke="#e8664a" stroke-width="3" stroke-linecap="round"/><path d="M31.3 8.7 V20" stroke="#e8664a" stroke-width="2" stroke-dasharray="2 2"/><path d="M20 20 H31.3" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/></svg>
     TrigoLab <small>4º ESO</small>
   </a>
+  <button class="gear" id="gear" aria-label="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   <nav class="main">
-    <a href="#inicio" data-v="inicio">Inicio</a>
-    <a href="#aprender" data-v="aprender">📘 Aprender</a>
-    <a href="#practicar" data-v="practicar">✏️ Practicar</a>
-    <a href="#jugar" data-v="jugar">🎮 Jugar</a>
+    <a href="#inicio" data-v="inicio"><span class="i">🏠</span>Inicio</a>
+    <a href="#aprender" data-v="aprender"><span class="i">📘</span>Aprender</a>
+    <a href="#practicar" data-v="practicar"><span class="i">✏️</span>Practicar</a>
+    <a href="#jugar" data-v="jugar"><span class="i">🎮</span>Jugar</a>
   </nav>
 </header>
 
 <main>
 <!-- ================= INICIO ================= -->
 <section class="view" id="v-inicio">
+  <div id="install-slot"></div>
   <div class="hero">
     <div>
       <h1>La trigonometría, paso a paso y jugando</h1>
@@ -222,12 +343,12 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
       <article class="lesson" data-t="Ángulos notables">
         <h2>2. Ángulos notables: 30°, 45° y 60°</h2>
         <p>Hay tres ángulos que salen muchísimo y cuyas razones conviene saberse de memoria (sin calculadora).</p>
-        <table>
+        <div class="tablewrap"><table>
           <tr><th></th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th></tr>
           <tr><th class="sen">sen</th><td>0</td><td>1/2</td><td>√2/2</td><td>√3/2</td><td>1</td></tr>
           <tr><th class="cos">cos</th><td>1</td><td>√3/2</td><td>√2/2</td><td>1/2</td><td>0</td></tr>
           <tr><th class="tg">tg</th><td>0</td><td>√3/3</td><td>1</td><td>√3</td><td>no existe</td></tr>
-        </table>
+        </table></div>
         <div class="box tip"><b>Truco de la escalera:</b> los senos de 0°, 30°, 45°, 60° y 90° son <b>√0/2, √1/2, √2/2, √3/2, √4/2</b>. Los cosenos son los mismos pero al revés.</div>
         <h3>¿De dónde salen?</h3>
         <div class="grid3">
@@ -266,12 +387,12 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
         </div>
         <div class="chips" id="uc-chips"></div>
         <h3>Signos en cada cuadrante</h3>
-        <table>
+        <div class="tablewrap"><table>
           <tr><th></th><th>I (0°–90°)</th><th>II (90°–180°)</th><th>III (180°–270°)</th><th>IV (270°–360°)</th></tr>
           <tr><th class="sen">sen</th><td>+</td><td>+</td><td>−</td><td>−</td></tr>
           <tr><th class="cos">cos</th><td>+</td><td>−</td><td>−</td><td>+</td></tr>
           <tr><th class="tg">tg</th><td>+</td><td>−</td><td>+</td><td>−</td></tr>
-        </table>
+        </table></div>
         <div class="box tip"><b>Regla para recordarlo:</b> <b>«Todas Sientan Tan Cómodas»</b>. En el I son positivas <b>todas</b>, en el II solo el <b class="sen">seno</b>, en el III solo la <b class="tg">tangente</b> y en el IV solo el <b class="cos">coseno</b>.</div>
       </article>
 
@@ -296,10 +417,10 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
           <span>radianes = grados · <span class="frac"><span>π</span><span>180</span></span></span>
           <span>grados = radianes · <span class="frac"><span>180</span><span>π</span></span></span>
         </div>
-        <table>
+        <div class="tablewrap"><table>
           <tr><th>Grados</th><td>30°</td><td>45°</td><td>60°</td><td>90°</td><td>120°</td><td>135°</td><td>180°</td><td>270°</td><td>360°</td></tr>
           <tr><th>Radianes</th><td>π/6</td><td>π/4</td><td>π/3</td><td>π/2</td><td>2π/3</td><td>3π/4</td><td>π</td><td>3π/2</td><td>2π</td></tr>
-        </table>
+        </table></div>
         <div class="box tip"><b>Truco:</b> piensa en π como «media vuelta». π/2 es un cuarto de vuelta (90°), π/3 es un tercio de media vuelta (60°)…<br>1 rad ≈ 57,3°.</div>
         <div class="box key"><b>Ojo con la calculadora:</b> tiene que estar en modo <b>DEG</b> para grados y <b>RAD</b> para radianes. Es el error más común en los exámenes.</div>
       </article>
@@ -357,6 +478,7 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
       <div class="stat"><b id="st-ok">0</b><small>aciertos</small></div>
       <div class="stat"><b id="st-tot">0</b><small>ejercicios</small></div>
       <div class="stat"><b id="st-streak">0</b><small>racha 🔥</small></div>
+      <button class="stat" id="b-prog" aria-label="Ver mi progreso"><b>📊</b><small>progreso</small></button>
     </div>
   </div>
   <div class="card ex" id="ex"></div>
@@ -388,7 +510,9 @@ footer{text-align:center;color:var(--ink2);font-size:.85rem;padding:20px}
 </section>
 </main>
 <div class="flash" id="flash"></div>
-<footer>TrigoLab · Trigonometría para 4º de la ESO · v1.0</footer>
+<footer id="foot"></footer>
+<div id="sheet" hidden></div>
+<div id="barra-act" hidden>🔄 Actualizando a la versión nueva…</div>
 
 <script>
 // ---------- utilidades ----------
@@ -400,7 +524,8 @@ const pick=a=>a[Math.floor(Math.random()*a.length)];
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const gcd=(a,b)=>b?gcd(b,a%b):a;
 const sgn=(n)=>n<0?'−':'';
-const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v!=null?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const vibrar=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
 const OK_MSG=['¡Perfecto!','¡Muy bien!','¡Eso es!','¡Genial, sigue así!','¡Correcto! 💪','¡Bravo!'];
 const BAD_MSG=['Casi… prueba otra vez','No pasa nada, revisa la pista','Uy, esa no es','Vuelve a intentarlo'];
 
@@ -528,10 +653,10 @@ function svgAngle(svg,e,cx,cy){
 })();
 
 // ---------- navegación de lecciones ----------
-const lessons=$$('.lesson');let curL=0;
+const lessons=$$('.lesson');let curL=0;const SEEN=store.get('trigolab-seen',{});
 $('#subnav').innerHTML=lessons.map((l,i)=>`<button data-i="${i}"><span>${i+1}</span>${l.dataset.t}</button>`).join('');
 function showLesson(i){curL=i;lessons.forEach((l,j)=>l.classList.toggle('on',i===j));$$('#subnav button').forEach((b,j)=>b.classList.toggle('on',i===j));
-  $('#l-prev').disabled=i===0;$('#l-next').textContent=i===lessons.length-1?'¡A practicar! →':'Siguiente →';store.set('trigolab-lesson',i)}
+  SEEN[i]=1;store.set('trigolab-seen',SEEN);$$('#subnav button').forEach((b,j)=>b.classList.toggle('seen',!!SEEN[j]));$('#l-prev').disabled=i===0;$('#l-next').textContent=i===lessons.length-1?'¡A practicar! →':'Siguiente →';store.set('trigolab-lesson',i)}
 $('#subnav').onclick=e=>{const b=e.target.closest('button');if(b){showLesson(+b.dataset.i);window.scrollTo({top:0,behavior:'smooth'})}};
 $('#l-prev').onclick=()=>{if(curL>0){showLesson(curL-1);window.scrollTo({top:0,behavior:'smooth'})}};
 $('#l-next').onclick=()=>{if(curL<lessons.length-1){showLesson(curL+1);window.scrollTo({top:0,behavior:'smooth'})}else location.hash='practicar'};
@@ -674,10 +799,12 @@ const TOPICS={
 function genTopic(t){if(t==='all')t=pick(Object.keys(TOPICS).filter(k=>k!=='all'));return pick(TOPICS[t].g)()}
 
 // ---------- práctica ----------
-let pTopic='all',pEx=null,pStats={ok:0,tot:0,streak:0};
+let pTopic='all',pEx=null,pStats=Object.assign({ok:0,tot:0,streak:0},store.get('trigolab-stats',{}));
+let PROG=store.get('trigolab-prog',{}); // por tema: {ok,tot}
+function anota(topic,bien){const p=PROG[topic]||(PROG[topic]={ok:0,tot:0});p.tot++;if(bien)p.ok++;store.set('trigolab-prog',PROG)}
 $('#topic-chips').innerHTML=Object.entries(TOPICS).map(([k,v])=>`<button class="chip${k==='all'?' on':''}" data-t="${k}">${v.n}</button>`).join('');
 $('#topic-chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;pTopic=b.dataset.t;$$('#topic-chips .chip').forEach(c=>c.classList.toggle('on',c===b));newEx()};
-function updStats(){$('#st-ok').textContent=pStats.ok;$('#st-tot').textContent=pStats.tot;$('#st-streak').textContent=pStats.streak}
+function updStats(){$('#st-ok').textContent=pStats.ok;$('#st-tot').textContent=pStats.tot;$('#st-streak').textContent=pStats.streak;store.set('trigolab-stats',pStats)}
 function newEx(){
   pEx=genTopic(pTopic);pEx.tries=0;pEx.done=false;
   const ex=pEx;
@@ -697,7 +824,7 @@ function newEx(){
     <div class="panel hint" id="p-hint">${ex.hint}</div>
     <div class="panel sol" id="p-sol"><b>Solución:</b> ${ex.sol}</div>`;
   $('#b-hint').onclick=()=>$('#p-hint').classList.toggle('on');
-  $('#b-sol').onclick=()=>{$('#p-sol').classList.add('on');if(!ex.done){ex.done=true;pStats.tot++;pStats.streak=0;updStats()}};
+  $('#b-sol').onclick=()=>{$('#p-sol').classList.add('on');if(!ex.done){ex.done=true;pStats.tot++;pStats.streak=0;anota(ex.topic,false);updStats()}};
   $('#b-next').onclick=newEx;
   if(ex.type==='num'){
     $('#ans-form').onsubmit=e=>{e.preventDefault();if(ex.done&&ex.solved)return;
@@ -705,16 +832,16 @@ function newEx(){
       if(isNaN(v)){fb.className='fb bad';fb.textContent='Escribe un número (por ejemplo 12,5 o −3/4).';return}
       ex.tries++;
       if(Math.abs(v-ex.answer)<=ex.tol){fb.className='fb ok';fb.textContent=pick(OK_MSG)+` La respuesta es ${fmt(ex.answer,ex.unit==='°'?1:2)}${ex.unit?(ex.unit==='°'?'°':' '+ex.unit):''}.`;
-        if(!ex.done){pStats.tot++;if(ex.tries===1){pStats.ok++;pStats.streak++}else pStats.streak=0;updStats()}ex.done=true;ex.solved=true;$('#p-sol').classList.add('on');
+        if(!ex.done){pStats.tot++;anota(ex.topic,ex.tries===1);if(ex.tries===1){pStats.ok++;pStats.streak++}else pStats.streak=0;updStats()}ex.done=true;ex.solved=true;$('#p-sol').classList.add('on');
         if(pStats.streak&&pStats.streak%5===0)flash('🔥 '+pStats.streak+' seguidas','#e8664a');}
-      else{fb.className='fb bad';fb.textContent=pick(BAD_MSG)+(ex.tries>=2?' — mira la solución si te atascas.':'');if(ex.tries===1)$('#p-hint').classList.add('on')}
+      else{vibrar(40);fb.className='fb bad';fb.textContent=pick(BAD_MSG)+(ex.tries>=2?' — mira la solución si te atascas.':'');if(ex.tries===1)$('#p-hint').classList.add('on')}
     };
     setTimeout(()=>$('#ans-in')?.focus({preventScroll:true}),50);
   }else{
     $$('.opt').forEach(b=>b.onclick=()=>{if(ex.done)return;ex.done=true;const i=+b.dataset.i,fb=$('#fb');pStats.tot++;
       $$('.opt').forEach((o,j)=>{o.disabled=true;if(j===ex.correct)o.classList.add('ok')});
-      if(i===ex.correct){pStats.ok++;pStats.streak++;fb.className='fb ok';fb.textContent=pick(OK_MSG);if(pStats.streak%5===0)flash('🔥 '+pStats.streak+' seguidas','#e8664a')}
-      else{b.classList.add('bad');pStats.streak=0;fb.className='fb bad';fb.textContent='Era la marcada en verde.';$('#p-sol').classList.add('on')}
+      anota(ex.topic,i===ex.correct);if(i===ex.correct){pStats.ok++;pStats.streak++;fb.className='fb ok';fb.textContent=pick(OK_MSG);if(pStats.streak%5===0)flash('🔥 '+pStats.streak+' seguidas','#e8664a')}
+      else{vibrar(40);b.classList.add('bad');pStats.streak=0;fb.className='fb bad';fb.textContent='Era la marcada en verde.';$('#p-sol').classList.add('on')}
       updStats()});
   }
 }
@@ -737,7 +864,7 @@ function nextCrono(){
   $('#c-q').innerHTML=`<div class="q-big">${q.q}</div><div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div>`;
   $$('#c-q .opt').forEach(b=>b.onclick=()=>{if(cr.lock)return;cr.lock=true;cr.tot++;const i=+b.dataset.i;
     if(i===q.correct){cr.streak++;cr.ok++;const m=multOf(cr.streak-1);cr.score+=10*m;b.classList.add('ok');flash('+'+10*m,'#2a9d8f');setTimeout(nextCrono,250)}
-    else{cr.streak=0;b.classList.add('bad');$$('#c-q .opt')[q.correct].classList.add('ok');setTimeout(nextCrono,900)}
+    else{vibrar(40);cr.streak=0;b.classList.add('bad');$$('#c-q .opt')[q.correct].classList.add('ok');setTimeout(nextCrono,900)}
     $('#c-score').textContent=cr.score;$('#c-mult').textContent='×'+multOf(cr.streak)});
 }
 function endCrono(){
@@ -812,7 +939,223 @@ function route(){
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',route);
-showLesson(Math.min(store.get('trigolab-lesson')||0,lessons.length-1));updTri();ucDraw();route();
+showLesson(Math.min(store.get('trigolab-lesson',0),lessons.length-1));updTri();ucDraw();updStats();route();
+
+/* ===================== VERSIÓN, AVISO Y AUTORÍA ===================== */
+const VERSION=(document.querySelector('meta[name="app-version"]')||{}).content||"dev";
+const NOVEDADES=[
+  ["1.1",["📲 Se puede instalar en el móvil como una app y funciona sin conexión","🔄 Se actualiza sola cuando hay una versión nueva, sin cortar un juego ni un ejercicio a medias","⚙️ Nuevo botón de Ajustes: tamaño de letra, modo claro u oscuro, instalar, autores y aviso","📊 Tu progreso por temas se guarda, y las lecciones que ya has visto se marcan con ✓","📱 Menú más cómodo en el móvil, botones más fáciles de tocar y ✓ / ✗ en las respuestas","🖼️ Al compartir el enlace por WhatsApp sale una vista previa con el icono"]],
+  ["1.0",["Primera versión: 7 lecciones interactivas, práctica con 7 temas y dos juegos (Contrarreloj y Diana goniométrica)"]]
+];
+const AUTORES="Adela Moreno Vega y Carlos Moreno Otto";
+const DISCLAIMER="Esta app es una ayuda para repasar y puede contener errores. <b>En caso de error o duda, la fuente fiable es el material oficial de la asignatura de Matemáticas</b> (libro de texto y apuntes del profesorado).";
+$('#foot').innerHTML=`<p>${DISCLAIMER}</p><p>© ${new Date().getFullYear()} <b>Adela Moreno Vega</b> y <b>Carlos Moreno Otto</b> · <button class="ver" id="foot-ver">v${VERSION} · Ajustes y novedades</button></p>`;
+function verCmp(a,b){const x=String(a).split('.').map(Number),y=String(b).split('.').map(Number);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return d}return 0}
+
+/* ===================== HOJAS (ventanas que suben desde abajo) ===================== */
+let sheetOpener=null,skipPop=false;
+function openSheet(html,label){const s=$('#sheet');
+  s.innerHTML=`<div class="sheet-bg" data-close="1"><div class="sheet" role="dialog" aria-modal="true" aria-label="${label}"><div class="grab"></div>${html}</div></div>`;
+  s.hidden=false;if(!sheetOpener||!document.body.contains(sheetOpener))sheetOpener=document.activeElement;
+  if(!(history.state&&history.state.sheet))history.pushState({sheet:1},'',location.hash||'#inicio');
+  const sh=s.querySelector('.sheet');sh.tabIndex=-1;sh.focus({preventScroll:true});}
+function closeSheet(fromPop){const s=$('#sheet');if(s.hidden)return;s.hidden=true;s.innerHTML='';
+  if(sheetOpener&&document.body.contains(sheetOpener))sheetOpener.focus({preventScroll:true});sheetOpener=null;
+  if(!fromPop&&history.state&&history.state.sheet){skipPop=true;history.back()}}
+addEventListener('popstate',()=>{if(skipPop){skipPop=false;return}closeSheet(true)});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+$('#sheet').addEventListener('click',e=>{if(e.target.dataset.close||e.target.closest('[data-close="btn"]'))closeSheet()});
+// Arrastrar la hoja hacia abajo para cerrarla
+(function(){let y0=null,dy=0,el=null;
+  $('#sheet').addEventListener('touchstart',e=>{el=e.target.closest('.sheet');if(!el||el.scrollTop>0){el=null;return}y0=e.touches[0].clientY;dy=0},{passive:true});
+  $('#sheet').addEventListener('touchmove',e=>{if(!el)return;dy=e.touches[0].clientY-y0;if(dy>0){el.classList.add('drag');el.style.transform=`translateY(${dy}px)`}},{passive:true});
+  $('#sheet').addEventListener('touchend',()=>{if(!el)return;el.classList.remove('drag');if(dy>90)closeSheet();else el.style.transform='';el=null});})();
+
+/* ===================== AJUSTES ===================== */
+let PREF=Object.assign({fs:'m',theme:'auto'},store.get('trigolab-pref',{}));
+function applyLook(){const r=document.documentElement;r.dataset.fs=PREF.fs;
+  const dark=PREF.theme==='dark'||(PREF.theme==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  r.dataset.theme=dark?'dark':'light';}
+applyLook();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyLook);
+const FS=[['s','Pequeña'],['m','Normal'],['l','Grande'],['xl','Muy grande']];
+const THEMES=[['auto','Automático'],['light','Claro'],['dark','Oscuro']];
+function openSettings(){
+  openSheet(`<h2>Ajustes</h2>
+    <div class="set-group"><h3>Tamaño de letra</h3>
+      <div class="seg" role="group" aria-label="Tamaño de letra">${FS.map(([k,l])=>`<button data-fsz="${k}" aria-pressed="${PREF.fs===k}">${l}</button>`).join('')}</div></div>
+    <div class="set-group"><h3>Aspecto</h3>
+      <div class="seg" role="group" aria-label="Aspecto">${THEMES.map(([k,l])=>`<button data-theme-set="${k}" aria-pressed="${PREF.theme===k}">${l}</button>`).join('')}</div>
+      <p class="muted" style="margin:0;font-size:.82rem">«Automático» sigue el modo claro u oscuro del móvil.</p></div>
+    <div class="set-group"><h3>Instalar en el móvil</h3>
+      ${isStandalone()?`<p class="muted" style="margin:0">✓ Ya la estás usando como app instalada.</p>`:`<button class="btn ghost" id="set-install" style="align-self:flex-start">📲 Cómo añadirla a la pantalla de inicio</button>`}</div>
+    <div class="set-group"><h3>Acerca de</h3>
+      <div class="about"><img src="icon-192.png" alt="" width="48" height="48"><div><b>TrigoLab · Trigonometría 4º ESO</b><br><span class="muted">Versión ${VERSION}</span></div></div>
+      <p style="margin:0">Creada por <b>Adela Moreno Vega</b> y <b>Carlos Moreno Otto</b>.</p>
+      <p class="muted" style="margin:0;font-size:.82rem">© ${new Date().getFullYear()} ${AUTORES}. Todos los derechos reservados. Uso personal y educativo gratuito.</p></div>
+    <div class="set-group"><h3>Aviso</h3><div class="disclaimer">${DISCLAIMER}</div></div>
+    <div class="set-group"><h3>Versión</h3>
+      <p style="margin:0">TrigoLab · <b>versión ${VERSION}</b></p>
+      <div class="row"><button class="btn ghost" id="set-upd">🔄 Buscar actualizaciones</button><button class="btn ghost" id="set-nov">Ver novedades</button></div>
+      <p class="muted" id="upd-msg" role="status" style="margin:0;font-size:.82rem">La app lo comprueba sola cada vez que la abres o vuelves a ella.</p></div>
+    <div class="sheet-nav"><button class="btn block" data-close="btn">Cerrar</button></div>`,'Ajustes');
+}
+$('#gear').addEventListener('click',openSettings);
+$('#foot-ver').addEventListener('click',openSettings);
+$('#sheet').addEventListener('click',e=>{const t=e.target;let b;
+  if(b=t.closest('[data-fsz]')){PREF.fs=b.dataset.fsz;store.set('trigolab-pref',PREF);applyLook();$$('[data-fsz]').forEach(x=>x.setAttribute('aria-pressed',x===b));return}
+  if(b=t.closest('[data-theme-set]')){PREF.theme=b.dataset.themeSet;store.set('trigolab-pref',PREF);applyLook();$$('[data-theme-set]').forEach(x=>x.setAttribute('aria-pressed',x===b));return}
+  if(b=t.closest('#set-upd')){const m=$('#upd-msg');b.disabled=true;m.textContent='Comprobando…';
+    buscarVersion(true).then(v=>{b.disabled=false;
+      if(!EN_WEB)m.textContent='Solo se puede comprobar en la app publicada.';
+      else if(v==null)m.textContent='No se ha podido comprobar. ¿Tienes conexión a internet?';
+      else if(verCmp(v,VERSION)>0)m.textContent=`Hay una versión nueva (${v}). Se instalará al cerrar esta ventana.`;
+      else m.textContent=`✓ Tienes la última versión (${VERSION}).`});return}
+  if(t.closest('#set-nov')){verNovedades(null);return}
+  if(t.closest('#set-install')){openInstall();return}
+  if(t.closest('#inst-now')){installNow();return}
+  if(b=t.closest('#inst-copy')){const u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{b.textContent='✓ Enlace copiado'}).catch(()=>{b.textContent=u});return}
+  if(t.closest('#rs')){$('#rs-box').hidden=false;return}
+  if(t.closest('#rs-no')){$('#rs-box').hidden=true;return}
+  if(t.closest('#rs-yes')){PROG={};store.set('trigolab-prog',PROG);pStats={ok:0,tot:0,streak:0};updStats();store.set('trigolab-rec-crono',0);store.set('trigolab-rec-diana',0);openProgress();return}
+});
+
+/* ===================== MI PROGRESO ===================== */
+function openProgress(){
+  const temas=Object.keys(TOPICS).filter(k=>k!=='all');
+  const vistas=Object.keys(SEEN).length;
+  const r1=store.get('trigolab-rec-crono',0),r2=store.get('trigolab-rec-diana',0);
+  openSheet(`<h2>📊 Tu progreso</h2>
+    <p class="muted" style="margin:0">Lecciones vistas: <b>${vistas} de ${lessons.length}</b> · Récords: ⏱️ ${r1||'—'} · 🎯 ${r2?r2+'/1000':'—'}</p>
+    ${temas.map(k=>{const p=PROG[k]||{ok:0,tot:0},pc=p.tot?Math.round(p.ok*100/p.tot):0;
+      return `<div class="progrow"><b>${TOPICS[k].n}</b><span class="muted">${p.tot?`${p.ok}/${p.tot} · ${pc}%`:'sin empezar'}</span><div class="bar"><div style="width:${pc}%;background:${pc>=80?'var(--cos)':pc>=50?'var(--tg)':'var(--sen)'}"></div></div></div>`}).join('')}
+    <p class="muted" style="font-size:.82rem;margin:6px 0 0">Cuenta como acierto lo que respondes bien al primer intento. Por debajo del 50 % (en rojo) conviene repasar la lección.</p>
+    <button class="btn ghost" id="rs" style="margin-top:12px">Borrar mi progreso</button>
+    <div class="confirm" id="rs-box" hidden><span style="flex:1;min-width:180px">¿Borrar todo tu progreso y tus récords? No se puede deshacer.</span><button class="btn ghost" id="rs-no">Cancelar</button><button class="btn coral" id="rs-yes">Borrar</button></div>
+    <div class="sheet-nav"><button class="btn block" data-close="btn">Cerrar</button></div>`,'Tu progreso');
+}
+$('#b-prog').addEventListener('click',openProgress);
+
+/* ===================== INSTALAR EN LA PANTALLA DE INICIO ===================== */
+const UA=navigator.userAgent;
+const IS_IOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const IS_ANDROID=/Android/.test(UA);
+const IN_APP=/FBAN|FBAV|Instagram|Line\/|; wv\)|GSA\//.test(UA);
+const IOS_OTHER=IS_IOS&&/CriOS|FxiOS|EdgiOS/.test(UA);
+const IS_IPAD=/iPad/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+let deferredPrompt=null;
+function iosVersion(){const sv=UA.match(/Version\/(\d+)(?:\.(\d+))?.*Safari/);if(sv&&!IOS_OTHER)return [+sv[1],+(sv[2]||0)];const os=UA.match(/OS (\d+)_(\d+)/);return os?[+os[1],+os[2]]:[0,0]}
+function isStandalone(){return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}
+function renderInstallBanner(){const slot=$('#install-slot');
+  if(isStandalone()||store.get('trigolab-install-hide',0)||(!IS_IOS&&!IS_ANDROID&&!deferredPrompt)){slot.innerHTML='';return}
+  slot.innerHTML=`<div class="install-banner"><img src="icon-192.png" alt=""><div><b>📲 Instálala en tu móvil</b><span>Tenla en la pantalla de inicio, como una app.</span></div>
+    <button class="btn" id="ib-how">${deferredPrompt?'Instalar':'Ver cómo'}</button><button class="x" id="ib-x" aria-label="No mostrar más">×</button></div>`;}
+$('#install-slot').addEventListener('click',e=>{if(e.target.closest('#ib-how'))openInstall();if(e.target.closest('#ib-x')){store.set('trigolab-install-hide',1);renderInstallBanner()}});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;renderInstallBanner()});
+addEventListener('appinstalled',()=>{deferredPrompt=null;store.set('trigolab-install-hide',1);closeSheet();renderInstallBanner()});
+async function installNow(){if(!deferredPrompt)return;deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;renderInstallBanner()}
+const SHARE_SVG='<svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+const DOTS_SVG='<svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>';
+const HDOTS_SVG='<svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>';
+const PLUS_SVG='<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
+function openInstall(){
+  if(deferredPrompt&&!IS_IOS){installNow();return}
+  let body;
+  if(IN_APP){
+    body=`<p style="margin:12px 0 0">Has abierto el enlace dentro de otra app. Para instalarla, ábrela primero en el navegador:</p>
+      <ol class="steps"><li><span>Toca el menú ${DOTS_SVG} o el botón ${SHARE_SVG} de esta pantalla.</span></li>
+      <li><span>Elige <b>«Abrir en ${IS_IOS?'Safari':'Chrome'}»</b> (o «Abrir en el navegador»).</span></li>
+      <li><span>Allí, vuelve a tocar <b>⚙️ → Cómo añadirla a la pantalla de inicio</b>.</span></li></ol>`;
+  }else if(IS_IOS){
+    const [maj,min]=iosVersion(),dev=IS_IPAD?'iPad':'iPhone';
+    const ver=maj?`<p class="hintbox" style="margin:12px 0 0">Tu ${dev} tiene <b>iOS ${maj}${min?'.'+min:''}</b>. Estos son los pasos para esa versión.</p>`:'';
+    const end=`<li><span>Si aparece <b>«Abrir como app web»</b>, déjalo activado y pulsa <span class="kbd">Añadir</span> (arriba a la derecha).</span></li>
+      <li><span>Listo: el icono <b>TrigoLab</b> aparecerá en tu pantalla de inicio. Ábrela siempre desde ahí.</span></li>`;
+    if(maj&&(maj<16||(maj===16&&min<4))&&IOS_OTHER){
+      body=ver+`<p style="margin:12px 0 0">En esta versión de iOS solo se puede instalar desde <b>Safari</b>:</p>
+        <ol class="steps"><li><span>Copia el enlace y ábrelo en <b>Safari</b>. <button class="btn ghost" id="inst-copy" style="margin-top:6px;padding:8px 12px;font-size:.85rem">Copiar enlace</button></span></li>
+        <li><span>Toca el botón <b>Compartir</b> ${SHARE_SVG} de la barra de abajo.</span></li>
+        <li><span>Elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}.</span></li>${end}</ol>`;
+    }else if(IOS_OTHER){
+      body=ver+`<p style="margin:12px 0 0">Desde este navegador (o desde Safari):</p>
+        <ol class="steps"><li><span>Toca el botón <b>Compartir</b> ${SHARE_SVG}, en la barra de direcciones o en el menú del navegador.</span></li>
+        <li><span>Elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}. Si no está, toca <b>«Más»</b> o baja en la lista.</span></li>${end}</ol>`;
+    }else if(maj>=26){
+      body=ver+`<ol class="steps">
+        <li><span>Toca el botón <b>···</b> ${HDOTS_SVG} que está a la derecha de la barra de la dirección${IS_IPAD?' (arriba)':' (abajo)'}.</span></li>
+        <li><span>Toca <b>«Compartir»</b> ${SHARE_SVG}.</span></li>
+        <li><span>Toca <b>«Ver más»</b> si hace falta, baja en la lista y elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}.</span></li>${end}</ol>`;
+    }else{
+      body=ver+`<ol class="steps">
+        <li><span>Toca el botón <b>Compartir</b> ${SHARE_SVG}${IS_IPAD?', arriba a la derecha.':', en el centro de la barra de abajo. Si no ves la barra, desliza un poco la página hacia arriba.'}</span></li>
+        <li><span>Baja en la lista y elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}.</span></li>${end}</ol>`;
+    }
+  }else if(IS_ANDROID){
+    body=`<p style="margin:12px 0 0">En el móvil Android, con Chrome:</p>
+      <ol class="steps"><li><span>Toca el menú ${DOTS_SVG} (arriba a la derecha).</span></li>
+      <li><span>Elige <b>«Añadir a pantalla de inicio»</b> o <b>«Instalar aplicación»</b>.</span></li>
+      <li><span>Pulsa <span class="kbd">Instalar</span>. El icono aparecerá en tu pantalla de inicio.</span></li></ol>`;
+  }else{
+    body=`<p style="margin:12px 0 0">Está pensada sobre todo para el móvil: abre este mismo enlace en el teléfono y sigue los pasos que salen allí.</p>
+      <ol class="steps"><li><span>En el ordenador también se puede instalar con Chrome o Edge: busca el icono de instalar ${PLUS_SVG} a la derecha de la barra de direcciones.</span></li></ol>`;
+  }
+  openSheet(`<div class="about"><img src="icon-192.png" alt="" width="56" height="56"><div><h2 style="margin:0">Instalar la app</h2><span class="muted" style="font-size:.82rem">Gratis, sin tienda y sin registrarse</span></div></div>
+    ${body}
+    <p class="muted" style="font-size:.82rem;margin:12px 0 0">Una vez instalada se abre a pantalla completa, funciona sin conexión y se actualiza sola.</p>
+    <div class="sheet-nav">${deferredPrompt?`<button class="btn" id="inst-now">Instalar ahora</button>`:''}<button class="btn ${deferredPrompt?'ghost':'block'}" data-close="btn">Entendido</button></div>`,'Instalar en el móvil');
+}
+// Enlace directo a las instrucciones: …/trigonometria/?instalar
+if(/[?&]instalar\b/.test(location.search)&&!isStandalone()){history.replaceState(null,'',location.pathname+location.hash);setTimeout(openInstall,400)}
+renderInstallBanner();
+
+/* ===================== ACTUALIZACIÓN AUTOMÁTICA ===================== */
+function verNovedades(desde){
+  const todas=NOVEDADES.filter(([v])=>!desde||verCmp(v,desde)>0);if(!todas.length)return;
+  openSheet(`<h2>${desde?'¡La app se ha actualizado!':'Novedades'}</h2>
+    <div class="nov">${todas.slice(0,4).map(([v,items])=>`<h4>Versión ${v}</h4><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul>`).join('')}</div>
+    <div class="sheet-nav"><button class="btn block" data-close="btn">Entendido</button></div>`,'Novedades');
+}
+(function(){const vista=store.get('trigolab-version',null);store.set('trigolab-version',VERSION);
+  if(vista&&verCmp(VERSION,vista)>0)setTimeout(()=>verNovedades(vista),600);})();
+// Solo en la web publicada (GitHub Pages) o en pruebas locales
+const EN_WEB=/\.github\.io$/.test(location.hostname)||location.hostname==='localhost';
+let actPendiente=false;
+// Nunca se recarga en mitad de un juego, con un ejercicio a medio escribir ni con una ventana abierta
+function seguroRecargar(){
+  if(!$('#sheet').hidden)return false;
+  if(cr)return false;
+  if(dn&&dn.round>0)return false;
+  const inp=$('#ans-in');if(inp&&inp.value.trim()&&location.hash==='#practicar')return false;
+  return true;
+}
+function actualizar(){
+  if(!seguroRecargar()){actPendiente=true;return}
+  $('#barra-act').hidden=false;
+  setTimeout(()=>location.replace(location.pathname+'?u='+Date.now()+location.hash),900);
+}
+let lastCheck=0;
+async function buscarVersion(force){
+  if(!EN_WEB)return null;
+  if(!force&&Date.now()-lastCheck<4000)return null;
+  lastCheck=Date.now();
+  try{const txt=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();
+    const m=txt.match(/name="app-version" content="([^"]+)"/);
+    if(m&&verCmp(m[1],VERSION)>0){actualizar();return m[1]}
+    return VERSION;}catch(e){return null}
+}
+// Si había una versión esperando, se aplica en cuanto se puede (al acabar un juego, cerrar una ventana…)
+new MutationObserver(()=>{if(actPendiente&&seguroRecargar()){actPendiente=false;actualizar()}})
+  .observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','class']});
+addEventListener('hashchange',()=>{if(actPendiente&&seguroRecargar()){actPendiente=false;actualizar()}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')buscarVersion()});
+setInterval(buscarVersion,90*1000);
+addEventListener('focus',()=>buscarVersion());
+addEventListener('pageshow',()=>buscarVersion());
+buscarVersion();
+if(/[?&]u=/.test(location.search))history.replaceState(history.state,'',location.pathname+location.hash);
+// Sin internet: el service worker guarda la app para que funcione sin conexión
+if(EN_WEB&&'serviceWorker' in navigator){
+  addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{}));
+}
 </script>
 </body>
 </html>
