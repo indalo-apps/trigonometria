@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="app-version" content="1.2">
+<meta name="app-version" content="1.2.1">
 <meta name="theme-color" content="#1d2b4f">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
@@ -977,6 +977,7 @@ showLesson(Math.min(store.get('trigolab-lesson',0),lessons.length-1));updTri();u
 /* ===================== VERSIÓN, AVISO Y AUTORÍA ===================== */
 const VERSION=(document.querySelector('meta[name="app-version"]')||{}).content||"dev";
 const NOVEDADES=[
+  ["1.2.1",["📲 Ayuda para instalar al día con iOS 27: el botón de tres rayas dentro de la barra de la dirección"]],
   ["1.2",["🍏 Revisada con las guías de diseño de Apple: botones de al menos 44 puntos, textos legibles, tamaño de letra «Enorme» y el icono en la cabecera","♿ Revisada con las pautas de accesibilidad WCAG 2.2: más contraste en los textos de color, lectores de pantalla, teclado (también la circunferencia y la Diana) y foco visible","📱 En Practicar, el botón «Siguiente» queda siempre a mano, y la Diana cabe en la pantalla sin moverla","↩️ El botón «atrás» del móvil sale del juego y cierra las ventanas","🎉 Celebración al batir un récord o al encadenar 10 aciertos","🔎 Revisadas todas las preguntas: opciones distintas y respuestas comprobadas"]],
   ["1.1",["📲 Se puede instalar en el móvil como una app y funciona sin conexión","🔄 Se actualiza sola cuando hay una versión nueva, sin cortar un juego ni un ejercicio a medias","⚙️ Nuevo botón de Ajustes: tamaño de letra, modo claro u oscuro, instalar, autores y aviso","📊 Tu progreso por temas se guarda, y las lecciones que ya has visto se marcan con ✓","📱 Menú más cómodo en el móvil, botones más fáciles de tocar y ✓ / ✗ en las respuestas","🖼️ Al compartir el enlace por WhatsApp sale una vista previa con el icono"]],
   ["1.0",["Primera versión: 7 lecciones interactivas, práctica con 7 temas y dos juegos (Contrarreloj y Diana goniométrica)"]]
@@ -1092,6 +1093,7 @@ addEventListener('appinstalled',()=>{deferredPrompt=null;store.set('trigolab-ins
 async function installNow(){if(!deferredPrompt)return;deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;renderInstallBanner()}
 const SHARE_SVG='<svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
 const DOTS_SVG='<svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>';
+const MENU3_SVG='<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h10"/></svg>';
 const HDOTS_SVG='<svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>';
 const PLUS_SVG='<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
 function openInstall(){
@@ -1118,7 +1120,7 @@ function openInstall(){
         <li><span>Elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}. Si no está, toca <b>«Más»</b> o baja en la lista.</span></li>${end}</ol>`;
     }else if(maj>=26){
       body=ver+`<ol class="steps">
-        <li><span>Toca el botón <b>···</b> ${HDOTS_SVG} que está a la derecha de la barra de la dirección${IS_IPAD?' (arriba)':' (abajo)'}.</span></li>
+        <li><span>${maj>=27&&!IS_IPAD?`Toca el botón ${MENU3_SVG} de tres rayas que está a la izquierda, dentro de la barra de la dirección (abajo).`:`Toca el botón ${HDOTS_SVG} que está a la derecha de la barra de la dirección${IS_IPAD?' (arriba)':' (abajo)'}.`}</span></li>
         <li><span>Toca <b>«Compartir»</b> ${SHARE_SVG}.</span></li>
         <li><span>Toca <b>«Ver más»</b> si hace falta, baja en la lista y elige <b>«Añadir a pantalla de inicio»</b> ${PLUS_SVG}.</span></li>${end}</ol>`;
     }else{
